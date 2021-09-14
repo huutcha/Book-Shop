@@ -1,4 +1,4 @@
-@extends('frontend.layouts.main')
+@extends('backend.layouts.main')
 
 @section('title')
     Categories

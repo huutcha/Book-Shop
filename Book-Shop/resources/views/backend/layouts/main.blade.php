@@ -12,11 +12,11 @@
     <body>
         <div class="container">
             {{-- header --}}
-            @include('frontend.layouts._header')
+            @include('backend.layouts._header')
             {{-- content --}}
             @yield('content')
             {{-- footer --}}
-            @include('frontend.layouts._footer')
+            @include('backend.layouts._footer')
         </div>
 
         <script src="{{asset('vendors/jquery/jquery-3.5.1.min.js')}}"></script>
