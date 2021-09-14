@@ -18,3 +18,4 @@ Route::get('/', function () {
 });
 
 Route::resource('categories', CategoryController::class);
+Route::resource('sub_categories', CategoryController::class);

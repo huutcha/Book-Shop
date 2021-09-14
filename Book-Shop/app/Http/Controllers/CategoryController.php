@@ -10,17 +10,17 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('frontend.category.index', compact('categories'));
+        return view('backend.category.index', compact('categories'));
     }
 
     public function show(Category $category)
     {
-        return view('frontend.category.show', compact('category'));
+        return view('backend.category.show', compact('category'));
     }
 
     public function create()
     {
-        return view('frontend.category.create');
+        return view('backend.category.create');
     }
 
     public function store(Request $request)
@@ -31,7 +31,7 @@ class CategoryController extends Controller
 
     public function edit(Category $category)
     {
-        return view('frontend.category.edit', compact('category'));
+        return view('backend.category.edit', compact('category'));
     }
 
     public function update(Request $request, Category $category)
