@@ -11,7 +11,7 @@
             </div>
             <div class="form-group">
                 <label>Category ID:</label>
-                <input type="text" name="category_id" class="form-control" value="{{$sub_category->name}}"/>
+                <input type="text" name="category_id" class="form-control" value="{{$sub_category->category_id}}"/>
             </div>
             <button type="submit">Submit</button>
         </form>

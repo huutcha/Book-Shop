@@ -15,6 +15,11 @@ class CreateProductInformationTable extends Migration
     {
         Schema::create('product_information', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('author');
+            $table->string('publisher');
+            $table->integer('year');
+            $table->string('language');
             $table->timestamps();
         });
     }
