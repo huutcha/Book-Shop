@@ -21,7 +21,7 @@
             @endif
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="{{ url('admin/profile')}}">Thông tin cá nhân</a>
             <a class="dropdown-item" href="#">Another action</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="{{url('admin/logout')}}">Đăng xuất</a>

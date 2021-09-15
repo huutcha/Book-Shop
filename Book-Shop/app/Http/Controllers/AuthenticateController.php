@@ -28,4 +28,12 @@ class AuthenticateController extends Controller
         Auth::logout();
         return redirect('/admin/login');
     }
+    
+    public function resetPassword() {
+        return view('backend.me.reset_password');
+    }
+
+    public function updatePassword(Request $request) {
+        
+    }
 }
