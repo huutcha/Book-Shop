@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\Session;
 
 class AuthenticateController extends Controller
 {
@@ -18,7 +19,7 @@ class AuthenticateController extends Controller
         if (Auth::attempt(['email' => $email, 'password' => $password])){
             return redirect('/admin');
         } else {
-            Session::flash('errors','Email hoặc mật khẩu không chính xác');
+            $request->session()->flash('errors', 'Email hoặc mật khẩu không chính xác');
             return redirect('/admin/login');
         }
     }

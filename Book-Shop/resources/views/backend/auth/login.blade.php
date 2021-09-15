@@ -7,6 +7,9 @@
         @csrf
         <h2>Login</h2>
         <input type="hidden" name="role" value="1">
+        @if (Session::has('errors'))
+            {{Session::get('errors')}}
+        @endif
         <div class="form-group">
             <label for="email">Email:</label>
             <input type="text" name="email" id="email" class="form-control">
