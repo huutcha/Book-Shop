@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\AuthenticateController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['prefix' => 'admin'],function (){
+    Route::get('/', function (){
+        return view('backend.index');
+    });
+    Route::get('login', [AuthenticateController::class, 'showLoginForm']);
+    Route::post('login', [AuthenticateController::class, 'login']);
+
+    Route::get('/logout', [AuthenticateController::class, 'logout']);
 });
