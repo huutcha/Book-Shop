@@ -26,9 +26,9 @@
                 <td>{{$sub_category->name}}</td>
                 <td>{{$sub_category->category_id}}</td>
                 <td>
-                    <a class="btn btn-primary" href="{{ url('sub_categories/'.$sub_category->id)}}">Show</a>
-                    <a class="btn btn-primary" href="{{ url('sub_categories/'.$sub_category->id.'/edit')}}">Edit</a>
-                    <form method="POST" action="{{url('sub_categories/'.$sub_category->id)}}" class="d-inline" onsubmit="return confirm('Are you sure?')">
+                    <a class="btn btn-primary" href="{{ url('admin/sub_categories/'.$sub_category->id)}}">Show</a>
+                    <a class="btn btn-primary" href="{{ url('admin/sub_categories/'.$sub_category->id.'/edit')}}">Edit</a>
+                    <form method="POST" action="{{url('admin/sub_categories/'.$sub_category->id)}}" class="d-inline" onsubmit="return confirm('Are you sure?')">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-danger" type="submit">Delete</button>

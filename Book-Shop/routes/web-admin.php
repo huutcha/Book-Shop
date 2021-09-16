@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthenticateController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Sub_CategoryController;
+use App\Http\Controllers\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,10 +18,10 @@ use App\Http\Controllers\UserController;
 */
 
 Route::group(['prefix' => 'admin'],function (){
-    
-    Route::get('login', [AuthenticateController::class, 'showLoginForm'])->name('login'); 
+
+    Route::get('login', [AuthenticateController::class, 'showLoginForm'])->name('login');
     Route::post('login', [AuthenticateController::class, 'login']);
-    
+
     Route::group(['middleware' => 'auth'], function(){
         Route::get('/', function (){
             return view('backend.index');
@@ -31,7 +34,11 @@ Route::group(['prefix' => 'admin'],function (){
         Route::put('/resetpassword', [AuthenticateController::class, 'updatePassword']);
 
         Route::post('/avatar', [UserController::class, 'updateAvatar']);
+
+        Route::resource('categories', CategoryController::class);
+        Route::resource('sub_categories', Sub_CategoryController::class);
+        Route::resource('products', Sub_CategoryController::class);
     });
 
-    
+
 });
