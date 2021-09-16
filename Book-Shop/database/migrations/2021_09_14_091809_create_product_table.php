@@ -19,8 +19,9 @@ class CreateProductTable extends Migration
             $table->integer('quantity');
             $table->integer('rate');
             $table->integer('price');
-            $table->unsignedBigInteger('promotion_id');
+            $table->insignedBigInteger('promotion_id');
             $table->timestamps();
+            $table->foreign('promotion_id')->references('id')->on('promotion');
         });
     }
 

@@ -17,10 +17,12 @@ class CreateProductInformationTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('author');
-            $table->string('publisher');
-            $table->integer('year');
+            $table->string('published');
             $table->string('language');
+            $table->timestamp('year');
             $table->timestamps();
+            $table->unsignedBigInteger('product_id');
+            $table->foreign('product_id')->references('id')->on('product');
         });
     }
 
