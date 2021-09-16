@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Sub_CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductInfomationController;
+use App\Http\Controllers\ProductSubCateController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,6 +41,7 @@ Route::group(['prefix' => 'admin'],function (){
         Route::resource('sub_categories', Sub_CategoryController::class);
         Route::resource('products', ProductController::class);
         Route::resource('product_infomations', ProductInfomationController::class);
+        Route::resource('product_sub_cates', ProductSubCateController::class);
     });
 
 

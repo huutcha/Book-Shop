@@ -1,7 +1,7 @@
 @extends('backend.layouts.main')
 
 @section('title')
-    Sub Categories
+    Product Infomation
 @endsection
 
 @push('css')
@@ -34,9 +34,9 @@
                 <td>{{$product_infomation->year}}</td>
                 <td>{{$product_infomation->product_id}}</td>
                 <td>
-                    <a class="btn btn-primary" href="{{ url('admin/sub_categories/'.$product_infomation->id)}}">Show</a>
-                    <a class="btn btn-primary" href="{{ url('admin/sub_categories/'.$product_infomation->id.'/edit')}}">Edit</a>
-                    <form method="POST" action="{{url('admin/sub_categories/'.$product_infomation->id)}}" class="d-inline" onsubmit="return confirm('Are you sure?')">
+                    <a class="btn btn-primary" href="{{ url('admin/product_infomations/'.$product_infomation->id)}}">Show</a>
+                    <a class="btn btn-primary" href="{{ url('admin/product_infomations/'.$product_infomation->id.'/edit')}}">Edit</a>
+                    <form method="POST" action="{{url('admin/product_infomations/'.$product_infomation->id)}}" class="d-inline" onsubmit="return confirm('Are you sure?')">
                         @csrf
                         @method('DELETE')
                         <button class="btn btn-danger" type="submit">Delete</button>
