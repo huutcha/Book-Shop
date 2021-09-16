@@ -29,6 +29,8 @@ Route::group(['prefix' => 'admin'],function (){
         Route::put('/profile/edit',[UserController::class, 'updateProfile']);
         Route::get('/resetpassword', [AuthenticateController::class, 'resetPassword']);
         Route::put('/resetpassword', [AuthenticateController::class, 'updatePassword']);
+
+        Route::post('/avatar', [UserController::class, 'updateAvatar']);
     });
 
     
