@@ -13,7 +13,9 @@
 @endsection
 @section('main')
 <h2>Đổi mật khẩu</h2>
-
+@if (Session::has('errors'))
+    {{Session::get('errors')}}
+@endif
 <form action="{{ url('admin/resetpassword')}}" method="post">
     @csrf
     @method('PUT')

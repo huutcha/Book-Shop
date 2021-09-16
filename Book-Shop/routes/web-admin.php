@@ -15,16 +15,21 @@ use App\Http\Controllers\UserController;
 */
 
 Route::group(['prefix' => 'admin'],function (){
-    Route::get('/', function (){
-        return view('backend.index');
-    });
-    Route::get('login', [AuthenticateController::class, 'showLoginForm']);
+    
+    Route::get('login', [AuthenticateController::class, 'showLoginForm'])->name('login'); 
     Route::post('login', [AuthenticateController::class, 'login']);
+    
+    Route::group(['middleware' => 'auth'], function(){
+        Route::get('/', function (){
+            return view('backend.index');
+        });
+        Route::get('/logout', [AuthenticateController::class, 'logout']);
+        Route::get('/profile',[UserController::class, 'showProfile']);
+        Route::get('/profile/edit',[UserController::class, 'editProfile']);
+        Route::put('/profile/edit',[UserController::class, 'updateProfile']);
+        Route::get('/resetpassword', [AuthenticateController::class, 'resetPassword']);
+        Route::put('/resetpassword', [AuthenticateController::class, 'updatePassword']);
+    });
 
-    Route::get('/logout', [AuthenticateController::class, 'logout']);
-    Route::get('/profile',[UserController::class, 'showProfile']);
-    Route::get('/profile/edit',[UserController::class, 'editProfile']);
-    Route::put('/profile/edit',[UserController::class, 'updateProfile']);
-    Route::get('/resetpassword', [AuthenticateController::class, 'resetPassword']);
-    Route::put('/resetpassword', [AuthenticateController::class, 'updatePassword']);
+    
 });
