@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <form method="POST" action="{{url('products')}}">
+        <form method="POST" action="{{url('admin/products')}}">
             @csrf
             <div class="form-group">
                 <label>Product Code:</label>
