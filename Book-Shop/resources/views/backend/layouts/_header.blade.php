@@ -14,13 +14,17 @@
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown
+            @if (Auth::user())
+              {{Auth::user()->email}}
+            @else
+              Người dùng
+            @endif
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="{{ url('admin/profile')}}">Thông tin cá nhân</a>
             <a class="dropdown-item" href="#">Another action</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
+            <a class="dropdown-item" href="{{url('admin/logout')}}">Đăng xuất</a>
           </div>
         </li>
         <li class="nav-item">
