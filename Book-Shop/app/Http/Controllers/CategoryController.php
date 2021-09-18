@@ -26,7 +26,7 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         Category::create($request->input());
-        return redirect('categories');
+        return redirect('admin/categories');
     }
 
     public function edit(Category $category)

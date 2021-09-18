@@ -30,8 +30,8 @@ class AuthenticateController extends Controller
         return redirect('/admin/login');
     }
     
-    public function resetPassword() {
-        return view('backend.me.reset_password');
+    public function changePassword() {
+        return view('backend.me.change_password');
     }
 
     public function updatePassword(Request $request) {
@@ -42,11 +42,11 @@ class AuthenticateController extends Controller
                 return redirect('admin/profile');
             } else {
                 $request->session()->flash('errors', 'Nhập lại mật khẩu không chính xác');
-                return redirect('/admin/resetpassword');
+                return redirect('/admin/changepassword');
             }
         } else {
             $request->session()->flash('errors', 'Mật khẩu cũ không chính xác');
-            return redirect('/admin/resetpassword');
+            return redirect('/admin/changepassword');
         }
     }
 }
