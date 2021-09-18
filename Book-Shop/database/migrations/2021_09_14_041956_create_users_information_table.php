@@ -19,7 +19,7 @@ class CreateUsersInformationTable extends Migration
             $table->integer('gender');
             $table->string('avatar');
             $table->string('address');
-            $table->timestamp('date_of_birth');
+            $table->date('date_of_birth');
             $table->string('phone');
             $table->timestamps();
             $table->unsignedBigInteger('user_id');
