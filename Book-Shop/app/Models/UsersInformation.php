@@ -15,14 +15,14 @@ class UsersInformation extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function getGenderAttribute() {
-        if ($this->attributes['gender'] == 1){
-            return "Nam";
-        }
-        if ($this->attributes['gender'] == 2){
-            return "Nữ";
-        }
-    }
+    // public function getGenderAttribute() {
+    //     if ($this->attributes['gender'] == 1){
+    //         return "Nam";
+    //     }
+    //     if ($this->attributes['gender'] == 2){
+    //         return "Nữ";
+    //     }
+    // }
     
     public function getDOBAttribute() {
         return date('d/m/Y',strtotime($this->attributes['date_of_birth']));

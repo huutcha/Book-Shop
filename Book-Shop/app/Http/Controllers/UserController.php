@@ -13,9 +13,9 @@ class UserController extends Controller
         return view('backend.me.profile');
     }
 
-    public function editProfile() {
-        return view('backend.me.edit_profile');
-    }
+    // public function editProfile() {
+    //     return view('backend.me.edit_profile');
+    // }
 
     public function updateProfile(Request $request) {
         Auth::user()->information->update($request->input());
