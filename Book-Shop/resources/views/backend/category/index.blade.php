@@ -6,7 +6,7 @@
 
 @section('page-title')
     Danh sách danh mục
-@endsection()
+@endsection
 @section('create')
     <a href="{{url('admin/categories/create')}}" class="btn btn-primary" style="margin-bottom: 16px">Thêm mới danh mục</a>
 @endsection
@@ -35,7 +35,7 @@
         </td>
     </tr>
     @endforeach
-    
+
 </tbody>
 
 

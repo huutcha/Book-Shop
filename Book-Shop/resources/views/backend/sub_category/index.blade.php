@@ -8,12 +8,19 @@
     <link rel="stylesheet" href="#" />
 @endpush
 
+@section('page-title')
+    Danh sách danh mục nhánh
+@endsection
+@section('create')
+    <a href="{{url('admin/sub_categories/create')}}" class="btn btn-primary" style="margin-bottom: 16px">Thêm mới danh mục nhánh</a>
+@endsection
+
 @push('js')
 
 @endpush
 
-@section('content')
-    <table class="table table-striped table-dark">
+@section('table')
+    <table>
         <tr>
             <th>Id</th>
             <th>Name</th>
