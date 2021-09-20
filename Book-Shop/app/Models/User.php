@@ -20,7 +20,8 @@ class User extends Authenticatable
     protected $fillable = [
         'email',
         'password',
-        'role'
+        'role',
+        'point'
     ];
     protected $table = 'users';
     /**
@@ -48,5 +49,17 @@ class User extends Authenticatable
 
     public function setPasswordAttribute($password){
         $this->attributes['password'] = Hash::make($password);
+    }
+
+    public function getRoleAttribute() {
+        if ($this->attributes['role'] == 1){
+            return 'RootAdmin';
+        }
+        if ($this->attributes['role'] == 2){
+            return 'Admin';
+        }
+        if ($this->attributes['role'] == 3){
+            return 'User';
+        }
     }
 }

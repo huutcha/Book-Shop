@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthenticateController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserInformationController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Sub_CategoryController;
 use App\Http\Controllers\ProductController;
@@ -22,20 +23,27 @@ Route::group(['prefix' => 'admin'],function (){
     Route::get('login', [AuthenticateController::class, 'showLoginForm'])->name('login');
     Route::post('login', [AuthenticateController::class, 'login']);
 
-    Route::group(['middleware' => 'auth'], function(){
+    Route::group(['middleware' => ['auth', 'isAdmin']], function(){
         Route::get('/', function (){
             return view('backend.index');
         });
         Route::get('/logout', [AuthenticateController::class, 'logout']);
-        Route::get('/profile',[UserController::class, 'showProfile']);
-        Route::get('/profile/edit',[UserController::class, 'editProfile']);
-        Route::put('/profile/edit',[UserController::class, 'updateProfile']);
-        Route::get('/resetpassword', [AuthenticateController::class, 'resetPassword']);
-        Route::put('/resetpassword', [AuthenticateController::class, 'updatePassword']);
+        Route::get('/profile',[UserInformationController::class, 'showProfile']);
+        // Route::get('/profile/edit',[UserController::class, 'editProfile']);
+        Route::put('/profile',[UserInformationController::class, 'updateProfile']);
+        Route::get('/changepassword', [AuthenticateController::class, 'changePassword']);
+        Route::put('/changepassword', [AuthenticateController::class, 'updatePassword']);
 
-        Route::post('/avatar', [UserController::class, 'updateAvatar']);
+        Route::post('/avatar/{id}', [UserInformationController::class, 'updateAvatar']);
 
         Route::resource('categories', CategoryController::class);
+
+        Route::resource('users', UserController::class);
+        Route::get('/users/{id}/information', [UserInformationController::class, 'createProfile']);
+        Route::put('/users/{id}/information', [UserInformationController::class, 'storeProfile']);
+
+
+
         Route::resource('sub_categories', Sub_CategoryController::class);
         Route::resource('products', ProductController::class);
     });
