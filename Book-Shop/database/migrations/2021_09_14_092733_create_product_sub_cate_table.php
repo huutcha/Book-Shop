@@ -17,7 +17,7 @@ class CreateProductSubCateTable extends Migration
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('sub_categories_id');
             $table->timestamps();
-            $table->foreign('product_id')->references('id')->on('product');
+            $table->foreign('product_id')->references('id')->on('products');
             $table->foreign('sub_categories_id')->references('id')->on('sub_categories');
         });
     }
