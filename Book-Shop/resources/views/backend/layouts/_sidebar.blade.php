@@ -18,7 +18,16 @@
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('admin/sub_categories')}}" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Quản lý danh mục con</span></a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('admin/products')}}" aria-expanded="false"><i class="mdi mdi-blur-linear"></i><span class="hide-menu">Quản lý sản phẩm</span></a>
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('admin/products')}}" aria-expanded="false"><i class="mdi mdi-border-inside"></i><span class="hide-menu">Quản lý sản phẩm</span></a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('admin/products')}}" aria-expanded="false"><i class="mdi mdi-blur-linear"></i><span class="hide-menu">Quản lý khuyến mãi</span></a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('admin/products')}}" aria-expanded="false"><i class="mdi mdi-blur-linear"></i><span class="hide-menu">Quản lý phản hồi</span></a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('admin/products')}}" aria-expanded="false"><i class="mdi mdi-blur-linear"></i><span class="hide-menu">Quản lý đơn hàng</span></a>
                 </li>
             </ul>
         </nav>

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <form method="POST" action="{{url('sub_categories')}}">
+        <form method="POST" action="{{url('admin/sub_categories')}}">
             @csrf
             <div class="form-group">
                 <label>Name:</label>
