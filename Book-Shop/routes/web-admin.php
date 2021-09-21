@@ -7,6 +7,7 @@ use App\Http\Controllers\UserInformationController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Sub_CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OrderController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -46,6 +47,11 @@ Route::group(['prefix' => 'admin'],function (){
 
         Route::resource('sub_categories', Sub_CategoryController::class);
         Route::resource('products', ProductController::class);
+
+        Route::get('/orders', [OrderController::class, 'index']);
+        Route::get('/orders/{id}', [OrderController::class, 'show']);
+        Route::put('/orders/{id}', [OrderController::class, 'update']);
+        Route::delete('/orders', [OrderController::class, 'destroy']);
     });
 
 
