@@ -16,8 +16,7 @@ class isAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->role != 1 && Auth::user()->role != 2){
-            dd(1);
+        if (Auth::user()->role != 'RootAdmin' && Auth::user()->role != 'Admin'){
             return view('welcome');
         }
         return $next($request);

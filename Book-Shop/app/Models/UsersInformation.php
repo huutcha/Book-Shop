@@ -9,7 +9,7 @@ class UsersInformation extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['fullname', 'gender', 'date_of_birth', 'avatar', 'address', 'phone'];
+    protected $fillable = ['fullname', 'gender', 'date_of_birth', 'avatar', 'address', 'phone', 'user_id'];
 
     public function user (){
         return $this->belongsTo(User::class);

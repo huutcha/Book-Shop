@@ -47,8 +47,13 @@
             <div class="card-body profile-card">
                 <center class="mt-4">
                     <div class="avatar-container rounded-circle">
+                        @if (Auth::user()->information->avatar)
                         <img src="{{asset('storage/avatars/'.Auth::user()->information->avatar)}}" class="rounded-circle" width="150" />
-                        <form action="{{url('admin/avatar')}}" id="upload-form" method="POST" enctype="multipart/form-data">
+                            
+                        @else
+                        <img src="{{asset('assets/images/users/user.jpg')}}" class="rounded-circle" width="150" />
+                        @endif
+                        <form action="{{url('admin/avatar/'.Auth::user()->id)}}" id="upload-form" method="POST" enctype="multipart/form-data">
                             @csrf
                             <label for="upload" id="upload-label">
                                 <i class="mdi mdi-account-edit upload-icon"></i>
