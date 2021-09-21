@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Order;
-
 class OrderController extends Controller
 {
     public function index(){
@@ -28,7 +27,9 @@ class OrderController extends Controller
         return redirect('admin/orders');
     }
 
-    public function destroy(){
-
+    public function destroy($id){
+        $order = Order::find($id);
+        $order->delete();
+        return redirect('admin/orders');
     }
 }
