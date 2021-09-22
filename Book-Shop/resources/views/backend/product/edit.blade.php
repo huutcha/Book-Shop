@@ -1,4 +1,4 @@
-@extends('backend.layouts.main')
+@extends('backend.layouts.table')
 
 @section('content')
     <div class="container">
@@ -21,11 +21,23 @@
                 <label>Price:</label>
                 <input type="text" name="price" class="form-control" value="{{$product->price}}"/>
             </div>
-            <div class="form-group">
-                <label>Promotion ID:</label>
-                <input type="text" name="promotion_id" class="form-control" value="{{$product->promotion_id}}"/>
-            </div>
-            <button type="submit">Submit</button>
+            <div class="form-group row">
+                    <label>Promotion ID:</label>
+                    <div class="col-md-12">
+                      <select
+                        class="select2 form-select shadow-none mt-3"
+                        {{-- multiple="multiple" --}}
+                        style="height: 36px; width: 100%"
+                        name="promotion_id"
+                      >
+                      
+                      @foreach ($promotions as $promotion)
+                        <option value={{$promotion->id}}>{{$promotion->name}} - {{$promotion->description}}</option>
+                      @endforeach                       
+                      </select>
+                    </div>
+                  </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 @endsection

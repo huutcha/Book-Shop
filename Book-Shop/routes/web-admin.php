@@ -10,6 +10,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductInfomationController;
 use App\Http\Controllers\ProductSubCateController;
 use App\http\Controllers\OrderController;
+use App\Http\Controllers\PromotionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -52,6 +53,7 @@ Route::group(['prefix' => 'admin'],function (){
         Route::resource('product_infomations', ProductInfomationController::class);
         Route::resource('product_sub_cates', ProductSubCateController::class);
         Route::resource('orders', OrderController::class);
+        Route::resource('promotions', PromotionController::class);
     });
 
 

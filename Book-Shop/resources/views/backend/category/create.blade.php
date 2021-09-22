@@ -1,4 +1,4 @@
-@extends('backend.layouts.main')
+@extends('backend.layouts.table')
 @section('title')
     Admin | Thêm mới danh mục
 @endsection

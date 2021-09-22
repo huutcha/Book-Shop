@@ -1,4 +1,4 @@
-@extends('backend.layouts.main')
+@extends('backend.layouts.table')
 
 @section('content')
     <div class="container">
@@ -13,7 +13,7 @@
                 <label>Sub_categories_id:</label>
                 <input type="text" name="sub_categories_id" class="form-control" value="{{$product_sub_cate->sub_categories_id}}"/>
             </div>
-            <button type="submit">Submit</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 @endsection

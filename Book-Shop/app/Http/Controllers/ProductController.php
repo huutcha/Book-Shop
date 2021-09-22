@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Promotion;
 
 class ProductController extends Controller
 {
@@ -20,8 +21,9 @@ class ProductController extends Controller
     }
 
     public function create()
-    {
-        return view('backend.product.create');
+    {    
+        $promotions = Promotion::all();
+        return view('backend.product.create', compact('promotions'));
     }
 
     public function store(Request $request)
@@ -32,7 +34,8 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        return view('backend.product.edit', compact('product'));
+        $promotions = Promotion::all();
+        return view('backend.product.edit', compact('product'), compact('promotions'));
     }
 
     public function update(Request $request, Product $product)

@@ -1,4 +1,4 @@
-@extends('backend.layouts.main')
+@extends('backend.layouts.table')
 
 @section('content')
     <div class="container">
@@ -13,7 +13,7 @@
                 <input type="text" name="sub_categories_id" class="form-control"/>
             </div>
 
-            <button type="submit">Submit</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 @endsection
