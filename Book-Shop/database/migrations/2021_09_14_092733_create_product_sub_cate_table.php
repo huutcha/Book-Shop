@@ -15,10 +15,10 @@ class CreateProductSubCateTable extends Migration
     {
         Schema::create('product_sub_cate', function (Blueprint $table) {
             $table->unsignedBigInteger('product_id');
-            $table->unsignedBigInteger('sub_categories_id');
+            $table->unsignedBigInteger('sub_category_id');
             $table->timestamps();
-            $table->foreign('product_id')->references('id')->on('product');
-            $table->foreign('sub_categories_id')->references('id')->on('sub_categories');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->foreign('sub_category_id')->references('id')->on('sub_categories')->onDelete('cascade');
         });
     }
 

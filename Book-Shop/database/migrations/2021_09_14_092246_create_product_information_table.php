@@ -15,7 +15,14 @@ class CreateProductInformationTable extends Migration
     {
         Schema::create('product_information', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->nullable();
+            $table->string('author')->nullable();
+            $table->string('published')->nullable();
+            $table->string('language')->nullable();
+            $table->integer('year')->nullable();
             $table->timestamps();
+            $table->unsignedBigInteger('product_id');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 

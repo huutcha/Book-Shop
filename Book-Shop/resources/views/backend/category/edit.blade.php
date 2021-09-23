@@ -1,8 +1,8 @@
-@extends('frontend.layouts.main')
+@extends('backend.layouts.main')
 
 @section('content')
     <div class="container">
-        <form method="POST" action="{{url('categories/'.$category->id)}}">
+        <form method="POST" action="{{url('admin/categories/'.$category->id)}}">
             @csrf
             @method('PUT')
             <div class="form-group">

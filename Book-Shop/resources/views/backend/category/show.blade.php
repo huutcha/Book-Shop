@@ -1,4 +1,4 @@
-@extends('frontend.layouts.main')
+@extends('backend.layouts.main')
 
 @section('content')
     <h3>Category: {{$category->name}}</h3>
