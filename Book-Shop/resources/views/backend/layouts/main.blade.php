@@ -10,6 +10,7 @@
         <!-- Favicon icon -->
         <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon.png')}}" />
         <!-- Custom CSS -->
+        @stack('link-css')
         <link href="{{ asset('dist/css/style.min.css')}}" rel="stylesheet" />
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -86,6 +87,7 @@
         <script src="{{asset('dist/js/sidebarmenu.js')}}"></script>
         <!--Custom JavaScript -->
         <script src="{{asset('dist/js/custom.min.js')}}"></script>
+        @stack('link-js')
         <!-- Code injected by live-server -->
         <script type="text/javascript">
             // <![CDATA[  <-- For SVG support

@@ -1,6 +1,9 @@
 @extends('backend.layouts.main')
+
+@push('link-css')
+<link rel="stylesheet" href="{{asset('dist/css/style_profile.min.css')}}">
+@endpush
 @push('css')
-    <link rel="stylesheet" href="{{asset('dist/css/style_profile.min.css')}}">
     <style>
         .scroll-sidebar{
             padding-top: 0;
@@ -84,9 +87,12 @@
     @yield('me-content')
 </div>
 @endsection
-@push('js')
+@push('link-js')
 <script src="{{asset('assets/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js')}}"></script>
-    <script src="{{asset('dist/js/pages/mask/mask.init.js')}}"></script>
+<script src="{{asset('dist/js/pages/mask/mask.init.js')}}"></script>
+@endpush
+@push('js')
+
     <script>
         $('#upload').change(function(){
             $('#upload-form').submit();
