@@ -36,10 +36,10 @@ Chỉnh sửa sản phẩm
                     </div>
                     <div class="form-group col-md-3">
                         <label for="" class="">Khuyến mãi</label>
-                        <select class="select2 form-select shadow-none" style="width: 100%; height: 36px;">
+                        <select class="select2 form-select shadow-none" name="promotion_id" style="width: 100%; height: 36px;">
                             <option>--Chọn chương trình--</option>
                             @foreach ($promotions as $promotion)
-                                <option value="{{$promotion->id}}" {{$product->promotion_id = $promotion->id ? 'selected' : ''}}>{{$promotion->name}}</option>
+                                <option value="{{$promotion->id}}" {{$product->promotion_id == $promotion->id ? 'selected' : ''}}>{{$promotion->name}}</option>
                             @endforeach
                         </select>
                     </div>

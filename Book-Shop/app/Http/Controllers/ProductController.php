@@ -74,20 +74,23 @@ class ProductController extends Controller
         $product->information->update($request->input());
         $product->subCategory()->sync($request->input('sub_category_id'));
 
-        foreach ($product->image as $img){
-            if (Storage::disk('products')->exists($img->path)) {
-                Storage::disk('products')->delete($img->path);
+        if ($request->file('path')) {
+            foreach ($product->image as $img){
+                if (Storage::disk('products')->exists($img->path)) {
+                    Storage::disk('products')->delete($img->path);
+                }
+                $img->delete();
             }
-            $img->delete();
+            $files = $request->file('path');
+            foreach ($files as $file){
+                $file->storeAs('', $file->getClientOriginalName(), 'products');
+                ImageProduct::create([
+                    'path' => $file->getClientOriginalName(),
+                    'product_id' => $product->id
+                ]);
+            }
         }
-        $files = $request->file('path');
-        foreach ($files as $file){
-            $file->storeAs('', $file->getClientOriginalName(), 'products');
-            ImageProduct::create([
-                'path' => $file->getClientOriginalName(),
-                'product_id' => $product->id
-            ]);
-        }
+        
 
         return redirect('admin/products');
     }

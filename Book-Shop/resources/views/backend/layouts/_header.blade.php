@@ -170,7 +170,7 @@
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown">
                       <a class="dropdown-item" href="{{url('admin/profile')}}"><i class="mdi mdi-account me-1 ms-1"></i> Hồ sơ cá nhân</a>
-                      <a class="dropdown-item" href="{{url('admin/changepassword')}}"><i class="mdi mdi-email me-1 ms-1"></i> Đổi mật khẩu</a>
+                      <a class="dropdown-item" href="{{url('admin/changepassword')}}"><i class="mdi mdi-account-key me-1 ms-1"></i> Đổi mật khẩu</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="{{url('admin/logout')}}"><i class="fa fa-power-off me-1 ms-1"></i> Đăng xuất</a>
                   </ul>

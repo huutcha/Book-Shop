@@ -24,7 +24,7 @@ Thêm mới chương trình khuyến mãi
                 </div>
                 <div class="form-group col-md-6">
                     <label>Ngày hết hạn:</label>
-                    <input type="date" name="date-expired" class="form-control"/>
+                    <input type="date" name="date_expired" class="form-control"/>
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Thêm mới</button>
