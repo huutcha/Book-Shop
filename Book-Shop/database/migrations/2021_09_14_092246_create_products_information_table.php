@@ -13,13 +13,13 @@ class CreateProductsInformationTable extends Migration
      */
     public function up()
     {
-        Schema::create('products_information', function (Blueprint $table) {
+        Schema::create('product_infomations', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('author');
             $table->string('published');
             $table->string('language');
-            $table->timestamp('year');
+            $table->smallint('year');
             $table->timestamps();
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products');
@@ -33,6 +33,6 @@ class CreateProductsInformationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products_information');
+        Schema::dropIfExists('product_infomations');
     }
 }

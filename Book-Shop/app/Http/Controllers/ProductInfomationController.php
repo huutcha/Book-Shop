@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ProductInfomation;
+use App\Models\Product;
 
 class ProductInfomationController extends Controller
 {
@@ -21,7 +22,8 @@ class ProductInfomationController extends Controller
 
     public function create()
     {
-        return view('backend.product_infomation.create');
+        $products = Product::all();
+        return view('backend.product_infomation.create', compact('products'));
     }
 
     public function store(Request $request)
@@ -32,7 +34,8 @@ class ProductInfomationController extends Controller
 
     public function edit(ProductInfomation $product_infomation)
     {
-        return view('backend.product_infomation.edit', compact('product_infomation'));
+        $products = Product::all();
+        return view('backend.product_infomation.edit', compact('product_infomation', 'products'));
     }
 
     public function update(Request $request, ProductInfomation $product_infomation)

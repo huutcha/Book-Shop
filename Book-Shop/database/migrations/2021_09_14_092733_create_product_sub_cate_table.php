@@ -13,7 +13,7 @@ class CreateProductSubCateTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_sub_cate', function (Blueprint $table) {
+        Schema::create('product_sub_cates', function (Blueprint $table) {
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('sub_categories_id');
             $table->timestamps();
@@ -29,6 +29,6 @@ class CreateProductSubCateTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_sub_cate');
+        Schema::dropIfExists('product_sub_cates');
     }
 }

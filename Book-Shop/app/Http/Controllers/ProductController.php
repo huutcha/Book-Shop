@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\ProductInfomation;
 use App\Models\Promotion;
 
 class ProductController extends Controller
@@ -17,7 +18,8 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
-        return view('backend.product.show', compact('product'));
+        $product_infomation = ProductInfomation::find($product->id);
+        return view('backend.product.show', compact('product', 'product_infomation'));
     }
 
     public function create()
@@ -29,6 +31,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         Product::create($request->input());
+        ProductInfomation::create($request->input());
         return redirect('admin/products');
     }
 

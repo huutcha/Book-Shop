@@ -13,7 +13,7 @@ class CreateImagesProductTable extends Migration
      */
     public function up()
     {
-        Schema::create('images_product', function (Blueprint $table) {
+        Schema::create('image_products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('path');
@@ -30,6 +30,6 @@ class CreateImagesProductTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('images_product');
+        Schema::dropIfExists('image_products');
     }
 }
