@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\SubCategory;
+use App\Models\Category;
 
 class Sub_CategoryController extends Controller
 {
@@ -21,7 +22,8 @@ class Sub_CategoryController extends Controller
 
     public function create()
     {
-        return view('backend.sub_category.create');
+        $categories = Category::all();
+        return view('backend.sub_category.create', compact('categories'));
     }
 
     public function store(Request $request)
@@ -31,8 +33,9 @@ class Sub_CategoryController extends Controller
     }
 
     public function edit(SubCategory $sub_category)
-    {
-        return view('backend.sub_category.edit', compact('sub_category'));
+    {   
+        $categories = Category::all();
+        return view('backend.sub_category.edit', compact('sub_category'), compact('categories'));
     }
 
     public function update(Request $request, SubCategory $sub_category)

@@ -58,5 +58,21 @@ class DatabaseSeeder extends Seeder
             'product_id' => 1,
             'quantity' => 1,
         ]);
+        DB::table('product_information')->insert([
+            'name' => 'Sách giáo khoa Toán 7',
+            'author' => 'Bộ giáo dục',
+            'published' => 'NXB Giáo dục',
+            'language' => 'Tiếng Việt',
+            'year' => 2008,
+            'product_id' => 1,
+        ]);
+        DB::table('image_products')->insert([
+            'path' => 'kh1.jpg',
+            'product_id' => 1,
+        ]);
+        DB::table('product_sub_cate')->insert([
+            'sub_category_id' => 1,
+            'product_id' => 1,
+        ]);
     }
 }
