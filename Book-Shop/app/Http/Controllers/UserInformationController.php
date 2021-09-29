@@ -20,8 +20,11 @@ class UserInformationController extends Controller
     // }
 
     public function updateProfile(Request $request) {
+        $request->validate([
+            'email' => 'bail|required|email'
+        ]);
         Auth::user()->information->update($request->input());
-        return redirect('admin/profile');
+        return redirect('admin/profile')->withInput();
     }
 
     public function createProfile($userId) {
