@@ -35,7 +35,7 @@
             <!-- ============================================================== -->
             <!-- Login box.scss -->
             <!-- ============================================================== -->
-            <div class="auth-wrapper d-flex no-block justify-content-center align-items-center bg-dark">
+            <div class="auth-wrapper d-flex no-block justify-content-center bg-dark" style="height: 100vh">
                 <div class="auth-box bg-dark border-top border-secondary">
                     <div>
                         <div class="text-center pt-3 pb-3">
@@ -46,19 +46,30 @@
                             @csrf
                             <div class="row pb-4">
                                 <div class="col-12">
+                                    <h5 class="text-danger">
+                                        @if (Session::has('fail'))
+                                            <h5 class="text-danger">{{Session::get('fail')}}</h5>
+                                        @endif
+                                    </h5>
                                     <!-- email -->
-                                    <div class="input-group mb-3">
+                                    <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text bg-danger text-white h-100" id="basic-addon1"><i class="mdi mdi-email fs-4"></i></span>
                                         </div>
-                                        <input type="text" class="form-control form-control-lg" placeholder="Địa chỉ email" name="email"  />
+                                        <input type="text" class="form-control form-control-lg " value="{{ old('email')}}" placeholder="Địa chỉ email" name="email"  />
                                     </div>
-                                    <div class="input-group mb-3">
+                                    @error('email')
+                                        <div class="text-danger mb-3">{{ $message}}</div>
+                                    @enderror
+                                    <div class="input-group mt-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text bg-warning text-white h-100" id="basic-addon2"><i class="mdi mdi-lock fs-4"></i></span>
                                         </div>
-                                        <input type="password" class="form-control form-control-lg" placeholder="Mật khẩu" name="password" />
+                                        <input type="password" class="form-control form-control-lg " placeholder="Mật khẩu" name="password" />
                                     </div>
+                                    @error('password')
+                                        <div class="text-danger">{{ $message}}</div>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="row border-top border-secondary">

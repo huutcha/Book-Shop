@@ -32,8 +32,18 @@ class ProductController extends Controller
     }
 
     public function store(Request $request)
-    {
+    {   
         
+        $request->validate([
+            'name' => 'required',
+            'product_code' => 'required',
+            'price' => 'required|numeric',
+            'quantity' => 'required|numeric',
+            'name' => 'required',
+            'sub_category_id' => 'required',
+            'path' => 'required',
+        ]);
+        $files = $request->file('path');
         $product = Product::create($request->input());
         
         ProductInformation::create(['product_id' => $product->id]);
@@ -43,7 +53,6 @@ class ProductController extends Controller
             $product->subCategory()->attach($cateId);
         }
 
-        $files = $request->file('path');
         foreach ($files as $file){
             $file->storeAs('', $file->getClientOriginalName(), 'products');
             ImageProduct::create([
@@ -69,7 +78,15 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product)
     {   
-
+        $request->validate([
+            'name' => 'required',
+            'product_code' => 'required',
+            'price' => 'required|numeric',
+            'quantity' => 'required|numeric',
+            'name' => 'required',
+            'sub_category_id' => 'required',
+            'path' => 'required',
+        ]);
         $product->update($request->input());
         $product->information->update($request->input());
         $product->subCategory()->sync($request->input('sub_category_id'));

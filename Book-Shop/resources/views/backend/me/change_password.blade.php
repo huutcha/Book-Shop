@@ -10,7 +10,7 @@ Admin | Đổi mật khẩu
     <div class="card">
         <div class="card-body">
             @if (Session::has('errors'))
-            {{Session::get('errors')}}
+            <h5 class="text-danger">{{Session::get('errors')}}</h5>
             @endif
             <form action="{{ url('admin/changepassword')}}" class="form-horizontal form-material" method="post">
                 @csrf

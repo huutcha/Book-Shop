@@ -27,7 +27,11 @@ class Sub_CategoryController extends Controller
     }
 
     public function store(Request $request)
-    {
+    {   
+        $request->validate([
+            'name' => 'required',
+            'category_id' => 'required'
+        ]);
         SubCategory::create($request->input());
         return redirect('admin/sub_categories');
     }

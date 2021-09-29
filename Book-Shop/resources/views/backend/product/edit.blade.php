@@ -19,25 +19,37 @@ Chỉnh sửa sản phẩm
                 <h5 class="card-title">Thông tin sản phẩm</h5>
                 <div class="form-group">
                     <label for="">Tên sản phẩm</label>
-                    <input type="text" name="name" id="" value="{{$product->information->name}}" class="form-control">
+                    <input type="text" name="name" id="" value="{{ old('name') ? old('name') : $product->information->name}}" class="form-control @error('name') is-invalid @enderror">
+                    @error('name')
+                        <div class="invalid-feedback">{{$message}}</div>
+                    @enderror
                 </div>
                 <div class="row">
                     <div class="form-group col-md-3">
                         <label for="" class="">Mã sản phẩm</label>
-                        <input type="text" class="form-control" id="" value="{{$product->product_code}}" name="product_code" />
+                        <input type="text" class="form-control @error('product_code') is-invalid @enderror" id="" value="{{old('product_code') ? old('product_code') : $product->product_code}}" name="product_code" />
+                        @error('product_code')
+                            <div class="invalid-feedback">{{$message}}</div>
+                        @enderror
                     </div>
                     <div class="form-group col-md-3">
                         <label for="" class="">Giá (VNĐ)</label>
-                        <input type="text" class="form-control" id="" value="{{$product->price}}" name="price" />
+                        <input type="text" class="form-control @error('price') is-invalid @enderror" id="" value="{{old('price') ? old('price') : $product->price}}" name="price" />
+                        @error('price')
+                            <div class="invalid-feedback">{{$message}}</div>
+                        @enderror
                     </div>
                     <div class="form-group col-md-3">
                         <label for="" class="">Số lượng</label>
-                        <input type="text" class="form-control" id="" value="{{$product->quantity}}" name="quantity" />
+                        <input type="text" class="form-control @error('quantity') is-invalid @enderror" id="" value="{{old('quantity') ? old('quantity') : $product->quantity}}" name="quantity" />
+                        @error('quantity')
+                            <div class="invalid-feedback">{{$message}}</div>
+                        @enderror
                     </div>
                     <div class="form-group col-md-3">
                         <label for="" class="">Khuyến mãi</label>
                         <select class="select2 form-select shadow-none" name="promotion_id" style="width: 100%; height: 36px;">
-                            <option>--Chọn chương trình--</option>
+                            <option value="0">--Chọn chương trình--</option>
                             @foreach ($promotions as $promotion)
                                 <option value="{{$promotion->id}}" {{$product->promotion_id == $promotion->id ? 'selected' : ''}}>{{$promotion->name}}</option>
                             @endforeach
@@ -47,21 +59,21 @@ Chỉnh sửa sản phẩm
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="" class="">Tác giả</label>
-                            <input type="text" class="form-control" value="{{$product->information->author}}"  id="" name="author" />
+                            <input type="text" class="form-control" value="{{old('authhor') ? old('authhor') : $product->information->author}}"  id="" name="author" />
                         </div>
                         <div class="form-group col-md-6">
                             <label for="" class="">Nhà xuất bản</label>
-                            <input type="text" class="form-control" id="" value="{{$product->information->published}}" name="published" />
+                            <input type="text" class="form-control" id="" value="{{old('published') ? old('published') : $product->information->published}}" name="published" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="" class="">Ngôn ngữ</label>
-                            <input type="text" class="form-control" id="" value="{{$product->information->language}}" name="language" />
+                            <input type="text" class="form-control" id="" value="{{old('language') ? old('language') : $product->information->language}}" name="language" />
                         </div>
                         <div class="form-group col-md-6">
                             <label for="" class="">Năm xuất bản</label>
-                            <input type="text" class="form-control" id="" value="{{$product->information->year}}" name="year" />
+                            <input type="text" class="form-control" id="" value="{{old('year') ? old('year') : $product->information->year}}" name="year" />
                         </div>
                     </div>
                 </div>
@@ -85,6 +97,9 @@ Chỉnh sửa sản phẩm
                             </optgroup>
                         @endforeach
                     </select>
+                    @error('sub_category_id')
+                        <div class="text-danger mt-2">{{$message}}</div>
+                    @enderror
                 </div>
             </div>
         </div>
@@ -93,6 +108,9 @@ Chỉnh sửa sản phẩm
                 <h5 class="card-title">Ảnh sản phẩm</h5>
                     <div class="form-group">
                         <input type="file" name="path[]" onchange="load(this)" id="upload" multiple class="form-control">
+                        @error('path')
+                            <div class="text-danger mt-2">{{$message}}</div>
+                        @enderror
                     </div>
                 <div class="file-upload-content">
                     @foreach ($product->image as $img )

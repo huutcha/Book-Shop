@@ -15,14 +15,21 @@ class AuthenticateController extends Controller
     }
 
     public function login(Request $request){
+        $validated = $request->validate([
+            'email' => 'bail|required|email',
+            'password' => 'required'
+        ]);
         $email = $request->input('email');
         $password = $request->input('password');
-        if (Auth::attempt(['email' => $email, 'password' => $password])){
-            return redirect('/admin');
-        } else {
-            $request->session()->flash('errors', 'Email hoặc mật khẩu không chính xác');
-            return redirect('/admin/login');
+        if ($validated){
+            if (Auth::attempt(['email' => $email, 'password' => $password])){
+                return redirect('/admin');
+            } else {
+                $request->session()->flash('fail', 'Email hoặc mật khẩu không chính xác');
+                return redirect('/admin/login')->withInput();
+            }
         }
+        
     }
 
     public function logout() {

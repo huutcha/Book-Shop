@@ -14,16 +14,21 @@ Thêm mới danh mục con
             @csrf
             <div class="form-group">
                 <label>Tên danh mục con</label>
-                <input type="text" name="name" class="form-control"/>
+                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"/>
+                @error('name')
+                    <div class="invalid-feedback">{{$message}}</div>
+                @enderror
             </div>
             <div class="form-group">
                 <label class="">Danh mục cha</label>
-                <select class="select2 form-select shadow-none" name="category_id" style="width: 100%; height: 36px;">
-                    <option>--Chọn danh mục--</option>
+                <select class="select2 form-select shadow-none @error('category_id') is-invalid @enderror" name="category_id" style="width: 100%; height: 36px;">
                     @foreach ($categories as $category)
                         <option value="{{$category->id}}">{{$category->name}}</option>
                     @endforeach
                 </select>
+                @error('category_id')
+                    <div class="invalid-feedback">{{$message}}</div>
+                @enderror
             </div>
             <button type="submit" class="btn btn-primary">Thêm mới</button>
         </form>

@@ -27,18 +27,18 @@ Hồ sơ cá nhân
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="example-email" class="col-md-12">Email</label>
+                    <label for="example-email" class="col-md-12 mb-0">Email</label>
                     <div class="col-md-12">
-                        <input type="email" value="{{Auth::user()->email}}" class="form-control ps-0 form-control-line" name="email" id="example-email" />
+                        <input type="text" disabled value="{{Auth::user()->email}}" class="form-control ps-0 form-control-line" name="email" id="example-email" />
                     </div>
                 </div>
                 <div class="form-group d-flex">
                     <div class="col-md-4" style="margin-right: 50px">
-                        <label>Ngày sinh </label> 
+                        <label class=" mb-0">Ngày sinh </label> 
                         <input type="date" class="form-control date-inputmask" name="date_of_birth" id="date-mask" value="{{Auth::user()->information->date_of_birth}}" />
                     </div>
                     <div class="col-md-4">
-                        <label for="example-email" class="col-md-12">Giới tính</label>
+                        <label for="example-email" class="col-md-12 mb-0">Giới tính</label>
                         <div class="d-flex">
                             <div class="form-check" style="margin-right: 30px">
                                 <input type="radio" class="form-check-input" id="male" name="gender" value="1" {{Auth::user()->information->gender == 1 ? 'checked' : ''}} />
