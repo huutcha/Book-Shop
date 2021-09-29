@@ -1,14 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthenticateController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\UserInformationController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\Sub_CategoryController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\PromotionController;
+use App\Http\Controllers\Admin\AuthenticateController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\UserInformationController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\Sub_CategoryController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\PromotionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
