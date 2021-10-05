@@ -23,7 +23,7 @@ class AuthenticateController extends Controller
         $password = $request->input('password');
         if ($validated){
             if (Auth::attempt(['email' => $email, 'password' => $password])){
-                return 123;
+                return redirect('/');
             } else {
                 $request->session()->flash('fail', 'Email hoặc mật khẩu không chính xác');
                 return redirect('/login')->withInput();
@@ -47,6 +47,6 @@ class AuthenticateController extends Controller
         $user = User::create(['email' => $email, 'password' => $password, 'role' => 3]);
         UsersInformation::create(['user_id' => $user->id]);
         $user->information->update($request->input());
-        return view('123');
+        return redirect('/');
     }
 }
