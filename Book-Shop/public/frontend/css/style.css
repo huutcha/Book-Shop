@@ -438,6 +438,13 @@ h5.latest-product{
 	color: #000;
 	font-weight: 700;
 	padding: 0.8em 0.5em 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2; /* number of lines to show */
+	line-height: 1.3em;        /* fallback */
+	/* max-height: 3.1em;      */
 }
 .grid-chain-bottom h6 a:hover{
 	text-decoration:none;
@@ -447,8 +454,11 @@ h5.latest-product{
 	border: 1px solid #ddd;
 	position: relative;	
 	width: 30.7%;
-	margin: 0 3% 0 0;
+	/* margin: 0 3% 0 0; */
 	padding:0;
+}
+.chain-grid + .chain-grid{
+	margin-left: 3%;
 }
 .menu-chain{
 	width:100%;
@@ -461,8 +471,17 @@ h5.latest-product{
 	padding: 1em 0.5em;
 }
 .chain{
-	margin: 0 auto;
-	padding: 3em 0;
+	margin: auto auto;
+	/* padding: 3em 0; */
+	width: 179px;
+	max-height: 100%;
+}
+.chain-container{
+	width: 100%;
+	height: 250px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 .chain-grid span.star{
 	background: url(../images/img-sprite.png)-208px -14px;
@@ -482,8 +501,8 @@ span.reducedfrom {
 span.actual {
 	font-weight: 500; 
 	color:#1DBAA5;
-    font-weight: 700; 
-    font-size:1.2em;
+    /* font-weight: 700;  */
+    font-size:1em;
 }
 span.dolor-left-grid{
 	font-size: 1.7em;
@@ -580,18 +599,18 @@ p.m_text {
 	position: relative;
 	line-height: 0px;
 }
-.nbs-flexisel-item > img {
+/* .nbs-flexisel-item > img {
 	cursor: pointer;
 	position: relative;
 	margin-top:10px;
 	margin-bottom: 10px;
 	max-width:150px;
 	max-height:500px;
-}
+} */
 .grid-flex{
 	margin:10px 0 20px 0;
 }
-.nbs-flexisel-item a {
+/* .nbs-flexisel-item a {
 	color: #999;
 	font-size:0.8125em;
 }
@@ -606,7 +625,7 @@ p.m_text {
 .nbs-flexisel-item > img {
 	cursor: pointer;
 	position: relative;
-}
+} */
 /*** Navigation ***/
 .nbs-flexisel-nav-left, .nbs-flexisel-nav-right {
 	width:30px;

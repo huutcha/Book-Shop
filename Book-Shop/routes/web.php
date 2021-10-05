@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthenticateController;
+use App\Http\Controllers\ProductController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +17,9 @@ use App\Http\Controllers\AuthenticateController;
 */
 
 Route::get('/', [ProductController::class, 'home']);
+
+Route::get('/category/{category_id}/sub_category/{subcategory_id}/products', [ProductController::class, 'shop']);
+Route::get('/products/{id}', [ProductController::class, 'show']);
 
 Route::get('/login', [AuthenticateController::class, 'showLogin']);
 Route::post('/login', [AuthenticateController::class, 'login']);
