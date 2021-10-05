@@ -20,4 +20,5 @@ Route::get('/login', [AuthenticateController::class, 'showLogin']);
 Route::post('/login', [AuthenticateController::class, 'login']);
 Route::get('/register', [AuthenticateController::class, 'showRegister']);
 Route::post('/register', [AuthenticateController::class, 'register']);
+Route::get('/logout', [AuthenticateController::class, 'logout']);
 
