@@ -21,13 +21,16 @@
             <div class="clearfix"></div>
         </div>
         <div class="desc1 span_3_of_2">
-            <h4>{{$product->information->name}}</h4>
+            <h4 style="font-weight: bold">{{$product->information->name}}</h4>
             <div class="cart-b">
                 <div class="left-n">{{$product->price}} VNĐ</div>
-                <a class="now-get get-cart-in" href="#">ADD TO CART</a>
-                <div class="clearfix"></div>
+                <div class="quantity">
+                    <label for="">Số lượng</label>
+                    <input type="number" name="quantity"  id="quantity" value="1">
+                </div>
+                <a class="now-get get-cart-in" id="add-cart" data-product="{{$product->id}}">MUA NGAY</a>
             </div>
-            <h6>{{$product->quantity > 0 ? 'Còn hàng' : 'Hết hàng'}}</h6>
+            <h6 style="font-size: 1.1em; color: #888">Tình trạng: {{$product->quantity > 0 ? 'Còn hàng' : 'Hết hàng'}}</h6>
             <p>
                 <strong>Tác giả: </strong> {{$product->information->author}}<br>
                 <strong>Nhà xuất bản: </strong> {{$product->information->published}}<br>
@@ -109,7 +112,7 @@
        $("#flexiselDemo1").flexisel({
            visibleItems: 3,
            animationSpeed: 1000,
-           autoPlay: false,
+           autoPlay: true,
            autoPlaySpeed: 3000,    		
            pauseOnHover: true,
            enableResponsiveBreakpoints: true,
@@ -130,5 +133,26 @@
        });
        
    });
+ </script>
+ <script>
+        $('#add-cart').click(function(){
+            console.log($(this).data('product'));
+            console.log($(this).siblings('.quantity').children('#quantity').val());
+            axios.post('/cart', {
+                product_id: $(this).data('product'),
+                quantity: $(this).siblings('.quantity').children('#quantity').val()
+            })
+            .then(function (response) {
+                loadCart();
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        })
+    
+     
+    //  $(function(){
+    //      $('#add-cart').click
+    //  })
  </script>
 @endpush

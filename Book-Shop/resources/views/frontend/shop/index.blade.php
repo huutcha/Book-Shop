@@ -6,7 +6,7 @@ Tông hợp sản phẩm
 
 @section('content')
     
-<div class="shoes-grid" style="margin-top: 2em">
+<div class="shoes-grid">
     <div class=" w_content">
         <div class="women">
             <ul class="w_nav">
@@ -21,41 +21,34 @@ Tông hợp sản phẩm
         </div>
     </div>
     <!-- grids_of_4 -->
-    <div class="product-left">
+    <div class="product-left mt-4">
         <div class="row">
-         
-        @foreach ($products as $product)
-        <div class="col-md-4 chain-grid">
-            <a href="{{url('products/'.$product->id)}}" class="chain-container"><img class="img-responsive chain" src="{{asset('storage/products/'.$product->image[0]->path)}}" alt=" " /></a>
-            <span class="star"> </span>
-            <div class="grid-chain-bottom">
-                <h6><a href="{{url('products/'.$product->id)}}">{{$product->information->name}}</a></h6>
-                <div class="star-price">
-                    <div class="dolor-grid">
-                        <span class="actual">{{$product->price}} VNĐ</span>
-                        {{-- <span class="reducedfrom">400$</span> --}}
-                        <span class="rating">
-                            <input type="radio" class="rating-input" id="rating-input-1-5" name="rating-input-1" />
-                            <label for="rating-input-1-5" class="{{$product->rate >= 1 ? 'rating-star1' : 'rating-star'}}"> </label>
-                            <input type="radio" class="rating-input" id="rating-input-1-4" name="rating-input-1" />
-                            <label for="rating-input-1-4" class="{{$product->rate >= 2 ? 'rating-star1' : 'rating-star'}}"> </label>
-                            <input type="radio" class="rating-input" id="rating-input-1-3" name="rating-input-1" />
-                            <label for="rating-input-1-3" class="{{$product->rate >= 3 ? 'rating-star1' : 'rating-star'}}"> </label>
-                            <input type="radio" class="rating-input" id="rating-input-1-2" name="rating-input-1" />
-                            <label for="rating-input-1-2" class="{{$product->rate >= 4 ? 'rating-star1' : 'rating-star'}}"> </label>
-                            <input type="radio" class="rating-input" id="rating-input-1-1" name="rating-input-1" />
-                            <label for="rating-input-1-1" class="{{$product->rate >= 5 ? 'rating-star1' : 'rating-star'}}"> </label>
-                        </span>
+            @foreach ($products as $product)
+            <div class="col-md-4">
+                <div class="product-container">
+                    <a href="{{url('products/'.$product->id)}}" class="chain-container"><img class="img-responsive chain" src="{{asset('storage/products/'.$product->image[0]->path)}}" alt=" " /></a>
+                    <span class="star"> </span>
+                    <div class="grid-chain-bottom">
+                        <h6><a href="{{url('products/'.$product->id)}}">{{$product->information->name}}</a></h6>
+                        <div class="star-price">
+                            <div class="dolor-grid">
+                                <span class="actual">{{$product->price}} VNĐ</span>
+                                {{-- <span class="reducedfrom">400$</span> --}}
+                                <ul class="rating">
+                                    <li><i class="{{$product->rate >= 1 ? 'fas fa-star' : 'far fa-star'}}"></i></li>
+                                    <li><i class="{{$product->rate >= 2 ? 'fas fa-star' : 'far fa-star'}}"></i></li>
+                                    <li><i class="{{$product->rate >= 3 ? 'fas fa-star' : 'far fa-star'}}"></i></li>
+                                    <li><i class="{{$product->rate >= 4 ? 'fas fa-star' : 'far fa-star'}}"></i></li>
+                                    <li><i class="{{$product->rate >= 5 ? 'fas fa-star' : 'far fa-star'}}"></i></li>
+                                </ul>
+                            </div>
+                            <a class="now-get add-cart" data-product="{{$product->id}}">MUA NGAY</a>
+                        </div>
                     </div>
-                    <a class="now-get get-cart" href="#">ADD TO CART</a>
-                    <div class="clearfix"></div>
                 </div>
             </div>
+            @endforeach
         </div>
-        @endforeach   
-        </div>
-        
-        <div class="clearfix"></div>
     </div>
 </div>
 
@@ -69,6 +62,18 @@ Tông hợp sản phẩm
             $('.active').css('background-color', '#1DBAA5')
             $('.active').parents('ul.cute').show();
         })
-        
+        $('.add-cart').click(function(){
+            console.log($(this).data('product'));
+            axios.post('/cart', {
+                product_id: $(this).data('product'),
+                quantity: 1
+            })
+            .then(function (response) {
+                loadCart();
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        })
     </script>
 @endpush
