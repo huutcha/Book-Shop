@@ -110,7 +110,7 @@ return [
     'prohibited_if' => 'The :attribute field is prohibited when :other is :value.',
     'prohibited_unless' => 'The :attribute field is prohibited unless :other is in :values.',
     'prohibits' => 'The :attribute field prohibits :other from being present.',
-    'same' => 'The :attribute and :other must match.',
+    'same' => ':attribute và :other không trùng khớp.',
     'size' => [
         'numeric' => 'The :attribute must be :size.',
         'file' => 'The :attribute must be :size kilobytes.',
@@ -156,6 +156,9 @@ return [
     'attributes' => [
         'email' => 'Email',
         'point' => 'Point',
+        'password' => 'Mật khẩu',
+        're-password' => 'Nhập lại mật khẩu',
+
     ],
 
 ];
