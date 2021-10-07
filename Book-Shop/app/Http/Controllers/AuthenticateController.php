@@ -23,7 +23,7 @@ class AuthenticateController extends Controller
         $password = $request->input('password');
         if ($validated){
             if (Auth::attempt(['email' => $email, 'password' => $password])){
-                return 123;
+                return redirect('/admin/profile');
             } else {
                 $request->session()->flash('fail', 'Email hoặc mật khẩu không chính xác');
                 return redirect('/login')->withInput();

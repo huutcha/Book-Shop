@@ -1,6 +1,6 @@
-@extends('backend.layouts.table')
+@extends('frontend.layouts.main')
 @section('title')
-Admin | Danh sách đơn hàng
+Danh sách đơn hàng
 @endsection
 
 @section('page-title')

@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthenticateController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +18,12 @@ use App\Http\Controllers\AuthenticateController;
 */
 
 Route::get('/', [ProductController::class, 'home']);
+Route::get('/orders', [OrderController::class, 'index']);
+// Route::get('/users', [UserController::class, 'index']);
 
 Route::get('/login', [AuthenticateController::class, 'showLogin']);
 Route::post('/login', [AuthenticateController::class, 'login']);
 Route::get('/register', [AuthenticateController::class, 'showRegister']);
 Route::post('/register', [AuthenticateController::class, 'register']);
 
+Route::resource('users', UserController::class);
