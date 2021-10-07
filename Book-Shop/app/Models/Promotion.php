@@ -8,5 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Promotion extends Model
 {
     use HasFactory;
+<<<<<<< HEAD
     protected $fillable =['name', 'description', 'sale', 'date_expired'];
+=======
+
+    protected $fillable = ['name', 'description', 'sale', 'date_expired'];
+
+    public function product() {
+        return $this->hasMany(Product::class, 'promotion_id');
+    }
+>>>>>>> huudinh
 }

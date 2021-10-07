@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\Sub_CategoryController;
+use App\Http\Controllers\AuthenticateController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +17,13 @@ use App\Http\Controllers\Sub_CategoryController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [ProductController::class, 'home']);
+Route::get('/orders', [OrderController::class, 'index']);
+// Route::get('/users', [UserController::class, 'index']);
 
-// Route::resource('categories', CategoryController::class);
-// Route::resource('sub_categories', Sub_CategoryController::class);
+Route::get('/login', [AuthenticateController::class, 'showLogin']);
+Route::post('/login', [AuthenticateController::class, 'login']);
+Route::get('/register', [AuthenticateController::class, 'showRegister']);
+Route::post('/register', [AuthenticateController::class, 'register']);
+
+Route::resource('users', UserController::class);

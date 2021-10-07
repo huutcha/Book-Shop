@@ -7,7 +7,7 @@ Chỉnh sửa thông tin người dùng
 @endsection
 
 @section('content')
-<form action="{{url('admin/users/'.$user->id)}}" method="post" id="user-form">
+<form action="{{url('admin/users/'.$user->id)}}" method="post" id="user-form" enctype="multipart/form-data">
     @csrf
     @method('PUT')
 <div class="row">
@@ -20,7 +20,7 @@ Chỉnh sửa thông tin người dùng
                 
                     <div class="form-group">
                         <label>Email:</label>
-                        <input type="text" name="email" class="form-control" value="{{$user->email}}"/>
+                        <input type="text" disabled name="email" class="form-control" value="{{$user->email}}"/>
                     </div>
                     <div class="form-group">
                         <label>Mật khẩu mới:</label>
@@ -35,7 +35,10 @@ Chỉnh sửa thông tin người dùng
                     </div>
                     <div class="form-group">
                         <label>Point:</label>
-                        <input type="text" name="point" class="form-control" value="{{$user->point}}"/>
+                        <input type="text" name="point" class="form-control @error('point') is-invalid @enderror" value="{{old('point') ? old('point') : $user->point}}"/>
+                        @error('point')
+                            <div class="invalid-feedback">{{$message}}</div>
+                        @enderror
                     </div>
             </div>
         </div>
@@ -81,31 +84,43 @@ Chỉnh sửa thông tin người dùng
                         <input type="text"  name="address" value="{{$user->information->address}}" class="form-control" />
                     </div>
                 </div>
-            </form>
-                <form action="{{url('admin/avatar/'.$user->id)}}" method="POST" id="form-upload" enctype="multipart/form-data">
-                    @csrf
-                    <div class="form-group">
-                        <label for="upload" id="upload-label">
-                            Avatar
-                        </label>
-                        <input type="file" name="avatar"  id="upload" class="form-control">
-                    </div>
-                </form>
-                <img src="{{asset('storage/avatars/'.$user->information->avatar)}}" class="" width="150" />
+                <div class="form-group">
+                    <label for="">Avatar</label>
+                    <input type="file" name="avatar" onchange="load(this)" id="upload" class="form-control">
+                </div>
+                <div class="file-upload-content">
+                    @if ($user->information->avatar)
+                        <img src="{{asset('storage/avatars/'.$user->information->avatar)}}" width="80" alt="">
+                    @endif
+                </div>
             </div>
         </div>
     </div>
-    
 </div>
 <button class="btn btn-primary" type="submit" id="submit">Lưu thay đổi</button>
+</form>
 @endsection
 @push('js')
-    <script>
-        $('#upload').change(function(){
-            $('#form-upload').submit()
-        })
-        $('#submit').click(function(){
-            $('#user-form').submit()
-        })
-    </script>
+
+<script>
+    $(".select2").select2();
+
+    function load(input){
+        $('.file-upload-content').html('');
+        
+        var reader = []
+        var html = ""
+        for (i = 0; i < input.files.length; i++){
+
+            reader[i] = new FileReader()
+            reader[i].onload = function(e){
+            html = `<img src="${e.target.result}" alt="" class="file-upload-image" style="margin-right: 8px" width="80px">`
+            $('.file-upload-content').append(html);
+            }
+            reader[i].readAsDataURL(input.files[i]);
+        }
+        
+    }
+    
+</script>
 @endpush

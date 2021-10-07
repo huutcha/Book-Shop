@@ -11,7 +11,10 @@
             @csrf
             <div class="form-group">
                 <label>Name:</label>
-                <input type="text" name="name" class="form-control"/>
+                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"/>
+                @error('name')
+                    <div class="invalid-feedback">{{$message}}</div>
+                @enderror
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

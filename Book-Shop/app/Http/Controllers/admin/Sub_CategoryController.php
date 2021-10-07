@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Models\SubCategory;
@@ -27,13 +27,21 @@ class Sub_CategoryController extends Controller
     }
 
     public function store(Request $request)
-    {
+    {   
+        $request->validate([
+            'name' => 'required',
+            'category_id' => 'required'
+        ]);
         SubCategory::create($request->input());
         return redirect('admin/sub_categories');
     }
 
     public function edit(SubCategory $sub_category)
+<<<<<<< HEAD:Book-Shop/app/Http/Controllers/Sub_CategoryController.php
     {
+=======
+    {   
+>>>>>>> huudinh:Book-Shop/app/Http/Controllers/admin/Sub_CategoryController.php
         $categories = Category::all();
         return view('backend.sub_category.edit', compact('sub_category'), compact('categories'));
     }

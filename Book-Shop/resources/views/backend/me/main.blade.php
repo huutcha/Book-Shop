@@ -1,6 +1,9 @@
 @extends('backend.layouts.main')
+
+@push('link-css')
+<link rel="stylesheet" href="{{asset('dist/css/style_profile.min.css')}}">
+@endpush
 @push('css')
-    <link rel="stylesheet" href="{{asset('dist/css/style_profile.min.css')}}">
     <style>
         .scroll-sidebar{
             padding-top: 0;
@@ -48,7 +51,7 @@
                 <center class="mt-4">
                     <div class="avatar-container rounded-circle">
                         @if (Auth::user()->information->avatar)
-                        <img src="{{asset('storage/avatars/'.Auth::user()->information->avatar)}}" class="rounded-circle" width="150" />
+                        <img src="{{asset('storage/avatars/'.Auth::user()->information->avatar)}}" class="rounded-circle" width="150" height="150" />
                             
                         @else
                         <img src="{{asset('assets/images/users/user.jpg')}}" class="rounded-circle" width="150" />
@@ -64,16 +67,17 @@
                     <h4 class="card-title mt-2">{{Auth::user()->information->fullname}}</h4>
                     <div class="row justify-content-center">
                         <div class="col-4">
-                            <a href="javascript:void(0)" class="link">
-                                <i class="mdi mdi-account-network" aria-hidden="true"></i>
-                                <span class="font-normal">{{Auth::user()->point}} Point</span>
-                            </a>
+                            <i class="mdi mdi-coin" aria-hidden="true"></i>
+                            <span class="font-normal">{{Auth::user()->point}} Point</span>
                         </div>
                         <div class="col-4">
-                            <a href="javascript:void(0)" class="link">
-                                <i class="mdi mdi-camera" aria-hidden="true"></i>
+                            @if (Auth::user()->role == 1)
+                                <i class="mdi mdi-account-star-variant" aria-hidden="true"></i>
+                                <span class="font-normal">RootAdmin</span>
+                            @else
+                                <i class="mdi mdi-account" aria-hidden="true"></i>
                                 <span class="font-normal">Admin</span>
-                            </a>
+                            @endif
                         </div>
                     </div>
                 </center>
@@ -84,9 +88,12 @@
     @yield('me-content')
 </div>
 @endsection
-@push('js')
+@push('link-js')
 <script src="{{asset('assets/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js')}}"></script>
-    <script src="{{asset('dist/js/pages/mask/mask.init.js')}}"></script>
+<script src="{{asset('dist/js/pages/mask/mask.init.js')}}"></script>
+@endpush
+@push('js')
+
     <script>
         $('#upload').change(function(){
             $('#upload-form').submit();

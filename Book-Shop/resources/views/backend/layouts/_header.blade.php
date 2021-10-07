@@ -162,15 +162,15 @@
               <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     @if (Auth::user()->information->avatar)
-                    <img src="{{asset('storage/avatars/'.Auth::user()->information->avatar)}}" class="rounded-circle" width="31" />
+                    <img src="{{asset('storage/avatars/'.Auth::user()->information->avatar)}}" class="rounded-circle" width="31" height="31" />
                         
                     @else
-                    <img src="{{asset('assets/images/users/user.jpg')}}" class="rounded-circle" width="31" />
+                    <img src="{{asset('assets/images/users/user.jpg')}}" class="rounded-circle" width="31" height="31"/>
                     @endif
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown">
                       <a class="dropdown-item" href="{{url('admin/profile')}}"><i class="mdi mdi-account me-1 ms-1"></i> Hồ sơ cá nhân</a>
-                      <a class="dropdown-item" href="{{url('admin/changepassword')}}"><i class="mdi mdi-email me-1 ms-1"></i> Đổi mật khẩu</a>
+                      <a class="dropdown-item" href="{{url('admin/changepassword')}}"><i class="mdi mdi-account-key me-1 ms-1"></i> Đổi mật khẩu</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="{{url('admin/logout')}}"><i class="fa fa-power-off me-1 ms-1"></i> Đăng xuất</a>
                   </ul>
