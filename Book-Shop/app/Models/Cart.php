@@ -12,7 +12,6 @@ class Cart
         {
             // dd($cart);
             $this->products = $cart->products;
-            $this->totalPrice = $cart->totalPrice;
         }
     }
 

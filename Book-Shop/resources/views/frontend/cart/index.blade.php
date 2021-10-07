@@ -40,7 +40,7 @@ Giỏ hàng
 </table>
 <h5 style="text-align: right" >Tổng tiền: <span id="total-price"></span> VNĐ</h5>
 <div class="mt-4" style="text-align: right">
-    <button  class="btn btn-success">Xác nhận thanh toán</button>
+    <a href="{{url('/payment')}}" class="btn btn-success">Xác nhận thanh toán</a>
 </div>
 @endsection
 @push('js')

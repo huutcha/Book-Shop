@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+<div class="content">
     <div class="account_grid">
         <div class="login-right">
             <h3>ĐĂNG NHẬP</h3>
@@ -38,4 +39,5 @@
         </div>
         <div class="clearfix"></div>
     </div>
+</div>
 @endsection

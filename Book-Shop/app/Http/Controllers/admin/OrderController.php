@@ -22,6 +22,9 @@ class OrderController extends Controller
         if ($request->input('browse')){
             $order->update(['state' => 1]);
         } else {
+            foreach($order->product as $product){
+                $product->increment('quantity', $product->pivot->quantity);
+            }
             $order->update(['state' => 2]);
         }
         return redirect('admin/orders');

@@ -27,4 +27,3 @@
         @yield('sidebar')
     </div>
 </div>
-<div class="clearfix"></div>

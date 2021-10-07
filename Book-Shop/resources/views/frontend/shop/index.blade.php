@@ -5,7 +5,7 @@ Tông hợp sản phẩm
 
 
 @section('content')
-    
+<div class="content">
 <div class="shoes-grid">
     <div class=" w_content">
         <div class="women">
@@ -51,7 +51,7 @@ Tông hợp sản phẩm
         </div>
     </div>
 </div>
-
+</div>
 @endsection
 
 
