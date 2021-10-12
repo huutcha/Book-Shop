@@ -28,10 +28,21 @@ class CommentController extends Controller
                 'username' => $comment->user->information->fullname,
                 'avatar' => $avatar,
                 'comment' => $comment->content,
+                'user_id' => $comment->user->id,
+                'user_role' => $comment->user->role,
                 'id' => $comment->id
                 // 'time' => (time() - $comment->created_at)
             ]);
         }
         return json_encode($result);
+    }
+
+    public function update($id, Request $request){
+        Comment::find($id)->update($request->input());
+        return 1;
+    }
+    public function delete($id){
+        Comment::find($id)->delete();
+        return 1;
     }
 }

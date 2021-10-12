@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AuthenticateController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
@@ -41,4 +42,9 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/payment', [PaymentController::class, 'show']);
     Route::get('/order', [OrderController::class, 'create']);
     Route::post('/comment', [CommentController::class, 'create']);
+    Route::put('/comment/{id}', [CommentController::class, 'update']);
+    Route::delete('/comment/{id}', [CommentController::class, 'delete']);
+});
+Route::get('/logout', function(){
+    Auth::logout();
 });

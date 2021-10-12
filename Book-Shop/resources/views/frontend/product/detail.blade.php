@@ -8,7 +8,7 @@
 @endpush
 @push('css')
 <style>
-    .commemt-list-item{
+    .comment-list-item{
         display: flex;
         /* align-items: center; */
         padding: 6px 12px;
@@ -19,6 +19,9 @@
     .comment-content{
         font-size: 14px;
         margin-left: 10px; 
+    }
+    .comment-content input{
+        width: 100%;
     }
     .comment-name{
         font-weight: bold;
@@ -31,6 +34,24 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        position: relative;
+    }
+    .comment-control .sub{
+        display: none;
+        position: absolute;
+        top:80%;
+        right: 50%;
+    }
+    .comment-control .sub div{
+        border: 1px solid black;
+        padding: 2px 4px;
+        font-size: 12px;
+        line-height: 14px;
+    }
+    .comment-control .sub div:hover{
+        background-color: blue;
+        color: white;
+        cursor: pointer;
     }
     .comment{
         padding: 6px 12px;
@@ -208,16 +229,21 @@
        
    });
  </script>
+
  <script>
      function loadComment(){
          var product_id = {{$product->id}};
+         var user = {}
+         user.id = {{Auth::user() ? Auth::user()->id : 0}}
+         user.role = '{{Auth::user() ? Auth::user()->role : 10}}'
          var url = "/comment/product/" + product_id
          axios.get(url)
             .then((res) => {
-                console.log(res.data);
-                var html = "";
+                var htmls = "";
+                var html = ""
                 res.data.forEach(function(comment){
-                    html += `<li class="commemt-list-item" data-comment="${comment.id}">
+                    if (user.id == comment.user_id){
+                        html = `<li class="comment-list-item" data-comment="${comment.id}">
                                 <img src="{{asset('storage/avatars/${comment.avatar}')}}" class="rounded-circle" width="50" height="50"/>
                                 <div style="flex:1">
                                     <div class="comment-name">
@@ -229,11 +255,49 @@
                                 </div>
                                 <div class="comment-control">
                                     <i class="fas fa-ellipsis-v" style="padding: 8px 14px; cursor: pointer;"></i>
+                                    <div class="sub">
+                                        <div class="fix">Sửa</div>
+                                        <div class="delete">Xóa</div>
+                                    </div>
                                 </div>
                             </li>`
+                    } else {
+                        if (user.role == 'RootAdmin' || user.role == 'Admin'){
+                            html = `<li class="comment-list-item" data-comment="${comment.id}">
+                                <img src="{{asset('storage/avatars/${comment.avatar}')}}" class="rounded-circle" width="50" height="50"/>
+                                <div style="flex:1">
+                                    <div class="comment-name">
+                                        ${comment.username ? comment.username : 'Người dùng'}
+                                    </div>
+                                    <div class="comment-content">
+                                        ${comment.comment}
+                                    </div>
+                                </div>
+                                <div class="comment-control">
+                                    <i class="fas fa-ellipsis-v" style="padding: 8px 14px; cursor: pointer;"></i>
+                                    <div class="sub">
+                                        <div class="delete">Xóa</div>
+                                    </div>
+                                </div>
+                            </li>`
+                        }
+                        else {
+                            html = `<li class="comment-list-item" data-comment="${comment.id}">
+                                <img src="{{asset('storage/avatars/${comment.avatar}')}}" class="rounded-circle" width="50" height="50"/>
+                                <div style="flex:1">
+                                    <div class="comment-name">
+                                        ${comment.username ? comment.username : 'Người dùng'}
+                                    </div>
+                                    <div class="comment-content">
+                                        ${comment.comment}
+                                    </div>
+                                </div>
+                            </li>`
+                        }
+                    }
+                    htmls += html
                 })
-                console.log($('.comment-list'));
-                $('.comment-list').html(html);
+                $('.comment-list').html(htmls);
             })
             .catch((res) => {
                 console.log(res);
@@ -270,5 +334,44 @@
     //  $(function(){
     //      $('#add-cart').click
     //  })
+    $('.comment-list').on('click', '.comment-control', function(){
+        $(this).children('.sub').toggle()
+    })
+    $('.comment-list').on('click', '.fix', function(){
+        var commentNode = $(this).parents('.comment-list-item');
+        var content = commentNode.find('.comment-content');
+        var oldVal = content.text();
+        html = `<input type="text">`
+        content.html(html)
+        content.children('input').focus();
+        commentNode.on('keyup', 'input',function(e){
+            if(e.keyCode == 13)
+            {
+                // console.log($(this).val());
+                var url = '/comment/' + commentNode.data('comment')
+                // console.log(url);
+                axios.put(url, {content: $(this).val()})
+                    .then((res) => {
+                        loadComment();
+                    })
+                    .catch((res) => {
+                        console.log(res);
+                    })
+            }
+        });
+    })
+    $('.comment-list').on('click', '.delete', function(){
+        var commentNode = $(this).parents('.comment-list-item');
+        var url = '/comment/' + commentNode.data('comment')
+                // console.log(url);
+                axios.delete(url)
+                    .then((res) => {
+                        loadComment();
+                    })
+                    .catch((res) => {
+                        console.log(res);
+                    })
+    })
  </script>
+ 
 @endpush

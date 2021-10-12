@@ -45,7 +45,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script src="{{asset('frontend/js/jquery.min.js')}}"></script>
     <script src="{{asset('assets/libs/bootstrap/dist/js/bootstrap.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.22.0/axios.min.js" integrity="sha512-m2ssMAtdCEYGWXQ8hXVG4Q39uKYtbfaJL5QMTbhl2kc6vYyubrKHhr6aLLXW4ITeXSywQLn1AhsAaqrJl8Acfg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     @stack('link-js')
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!-- Code injected by live-server -->
@@ -108,38 +108,39 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         function loadCart (){
             axios.get('/getCart')
                 .then(function(res){
-                    console.log(res.data)
                     var html = ''
                     var html1 = ''
-                    res.data.cart.forEach(function(item){
-                        // console.log(item);
-                        html += `<li class="cart-item">
-                                        <img src="{{asset('storage/products/${item.img}')}}" alt="">
-                                        <div class="item-name">
-                                            ${item.name}
-                                        </div>
-                                        <div class="quantity-price">
-                                            <div class="quantity">
-                                                <label for="">Số lượng: </label>
-                                                <input type="number" name="quantity" data-id="${item.id}" value="${item.quantity}" class="cart-top-quantity">
+                    if(res.data.cart){
+                        res.data.cart.forEach(function(item){
+                            // console.log(item);
+                            html += `<li class="cart-item">
+                                            <img src="{{asset('storage/products/${item.img}')}}" alt="">
+                                            <div class="item-name">
+                                                ${item.name}
                                             </div>
-                                            <span class="price">${item.price * item.quantity} VNĐ</span>
-                                        </div>
-                                        <div class="remove" data-id="${item.id}">x</div>
-                                    </li>`
-                        html1 += `<tr class="cart-table-item">
-                                    <td><button data-id="${item.id}" class="btn btn-danger table-cart-remove">x</button></td>
-                                    <td class="table-item-name">
-                                        <img src="{{asset('storage/products/${item.img}')}}" alt="">
-                                        <p>${item.name}</p>
-                                    </td>
-                                    <td>
-                                        <input type="number" name="quantity" data-id="${item.id}" class="cart-quantity" value="${item.quantity}" min="1">
-                                    </td>
-                                    <td>${item.price} VNĐ</td>
-                                    <td>${item.price * item.quantity} VNĐ</td>
-                                </tr>`
-                    })
+                                            <div class="quantity-price">
+                                                <div class="quantity">
+                                                    <label for="">Số lượng: </label>
+                                                    <input type="number" name="quantity" data-id="${item.id}" value="${item.quantity}" class="cart-top-quantity">
+                                                </div>
+                                                <span class="price">${item.price * item.quantity} VNĐ</span>
+                                            </div>
+                                            <div class="remove" data-id="${item.id}">x</div>
+                                        </li>`
+                            html1 += `<tr class="cart-table-item">
+                                        <td><button data-id="${item.id}" class="btn btn-danger table-cart-remove">x</button></td>
+                                        <td class="table-item-name">
+                                            <img src="{{asset('storage/products/${item.img}')}}" alt="">
+                                            <p>${item.name}</p>
+                                        </td>
+                                        <td>
+                                            <input type="number" name="quantity" data-id="${item.id}" class="cart-quantity" value="${item.quantity}" min="1">
+                                        </td>
+                                        <td>${item.price} VNĐ</td>
+                                        <td>${item.price * item.quantity} VNĐ</td>
+                                    </tr>`
+                        })
+                    }
                     $('#cart-list-item').html(html);
                     $('.badge').html($('#cart-list-item').children().length)
                     $('.badge').show();

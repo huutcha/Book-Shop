@@ -13,6 +13,7 @@ class OrderController extends Controller
 {
     public function create(){
         
+        // dd(Session::get('myCart'));
         $order = Order::create([
             'price' => Session::get('myCart')->totalPrice(),
             'state' => 0,

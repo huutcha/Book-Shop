@@ -91,7 +91,7 @@
         $('#payment').click(function(){
             axios.get('/order')
                 .then(function(res){
-                    swal("Thành công!", "Đơn hàng sẽ được giao trong thời gian sớm nhất!", "success")
+                    swal("Thành công!", "Đơn hàng đang được phê duyệt!", "success")
                         .then((value) => {
                             window.location.assign("/")
                         })
