@@ -8,6 +8,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\SearchController;
 
 
 /*
@@ -45,6 +46,9 @@ Route::group(['middleware' => 'auth'], function(){
     Route::put('/comment/{id}', [CommentController::class, 'update']);
     Route::delete('/comment/{id}', [CommentController::class, 'delete']);
 });
+
+Route::get('/search', [SearchController::class, 'search']);
+
 Route::get('/logout', function(){
     Auth::logout();
 });

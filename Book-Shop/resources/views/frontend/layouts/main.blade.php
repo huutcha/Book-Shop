@@ -110,7 +110,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 .then(function(res){
                     var html = ''
                     var html1 = ''
-                    if(res.data.cart){
+                    if(res.data.cart.length){
                         res.data.cart.forEach(function(item){
                             // console.log(item);
                             html += `<li class="cart-item">
@@ -140,9 +140,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                         <td>${item.price * item.quantity} VNĐ</td>
                                     </tr>`
                         })
+                    } else {
+                        html1 = `<tr>
+                                    <td colspan="5"><p class="text-center">Giỏ hàng trống. <a href="{{url('/')}}">Mua hàng ngay.</a></p></td>
+                                </tr>`
+                        html = `<img src="{{asset('frontend/images/nothing.png')}}" alt="" width="100px">
+                                <p>Giỏ hàng trống</p>`
                     }
                     $('#cart-list-item').html(html);
-                    $('.badge').html($('#cart-list-item').children().length)
+                    $('.badge').html($('#cart-list-item').children('li').length)
                     $('.badge').show();
                     $('#cart-data').html(html1);
                     $('#total-price').html(res.data.totalPrice)
@@ -152,6 +158,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 })
         }
     </script>
+    
     <script>loadCart()</script>
     <script>
         $('#cart-list-item').on('click', '.remove', function(){
@@ -173,6 +180,43 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 .catch(function(res){
                     console.log(res);
                 })
+        })
+    </script>
+    <script>
+        $('#search-btn').click(function(){
+            if (window.localStorage.getItem('history')){
+                var history = JSON.parse(window.localStorage.getItem('history'))
+                if (!history.includes($(this).siblings('#search-content').val())) {
+                    history.unshift($(this).siblings('#search-content').val())
+                    window.localStorage.setItem('history', JSON.stringify(history))
+                }
+            } else {
+                var history = [$(this).siblings('#search-content').val()]
+                window.localStorage.setItem('history', JSON.stringify(history))
+            }
+
+        })
+        function loadHistory(){
+            if (window.localStorage.getItem('history')){
+                var history = JSON.parse(window.localStorage.getItem('history'))
+                var html = ""
+                history.forEach(function(item){
+                    html += `<li class="search-list-item">
+                                <i class="fas fa-history"></i>
+                                <a href="search?search=${item}">${item}</a>
+                            </li>`
+                })
+                $('.search-list').html(html)
+            } else {
+                $('.search-list').html('Lịch sử trống')
+            }
+        }
+        loadHistory();
+        $('.search').blur(function(e){
+            $(this).find('.search-list').hide();
+        })
+        $('.search').click(function(){
+            $(this).find('.search-list').show();
         })
     </script>
     @stack('js')

@@ -121,6 +121,9 @@ ul.support li a {
 .cart-container ul {
 	padding: 10px 6px;
 	margin-bottom: 10px;
+	min-height: 150px;
+	max-height: 200px;
+	overflow-y: scroll;
 }
 .cart-container .cart-item{
 	display: flex;
@@ -204,7 +207,6 @@ ul.login li a span{
 	border: 1px solid #ddd;
 	position: relative;
 	width: 47%;
-	float: right;
 	margin: 1.2em 0 0;
 }
 .search input[type="text"] {
@@ -221,6 +223,33 @@ ul.login li a span{
 	-moz-transition: all 0.5s ease-out;
 	-ms-transition: all 0.5s ease-out;
 	-o-transition: all 0.5s ease-out;
+}
+
+.search .search-list{
+	position: absolute;
+	display: none;
+	top: 100%;
+	left: 0;
+	width:68%;
+	margin: 0;
+	border: 1px solid #999;
+	background-color: white;
+	z-index: 10;
+}
+.search .search-list .search-list-item{
+	display: flex;
+	padding: 4px 8px;
+	align-items: center;
+	color: #606060;
+}
+.search .search-list .search-list-item a{
+	flex: 1;
+	margin-left: 6px;
+	text-decoration: none;
+	color: #606060;
+	white-space: nowrap; 
+	overflow: hidden;
+	text-overflow: ellipsis; /* text-overflow: clip; */
 }
 .search input[type="submit"] {
 	border-left: 1px solid #ddd;
