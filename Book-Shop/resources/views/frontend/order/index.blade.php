@@ -22,7 +22,7 @@ Danh sách đơn hàng
     @foreach ($orders as $order)
     <tr>
         <td>{{$order->id}}</td>
-        <td>{{$order->create_at}}</td>
+        <td>{{$order->date}}</td>
         <td>{{$order->user->email}}</td>
         <td>{{$order->state_char}}</td>
         <td>{{$order->price}}</td>

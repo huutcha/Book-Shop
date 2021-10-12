@@ -1,13 +1,23 @@
 @extends('backend.layouts.main')
 
 
-@push('css')
+@push('link-css')
         <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/extra-libs/multicheck/multicheck.css')}}" />
     <link href="{{asset('assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css')}}" rel="stylesheet" />
     <link href="{{asset('/assets/libs/select2/dist/css/select2.min.css')}}" rel="stylesheet" />
 
 
+@endpush
+@push('css')
+    <style>
+        table tbody td.nowrap{
+            overflow:hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            max-width: 320px;
+        }
+    </style>
 @endpush
 
 @section('content')

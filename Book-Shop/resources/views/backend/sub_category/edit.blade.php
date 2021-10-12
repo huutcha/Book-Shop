@@ -52,10 +52,10 @@ Chỉnh sửa danh mục con
             <button type="submit" class="btn btn-primary">Submit</button>
 =======
                 <label class="">Danh mục cha</label>
-                <select class="select2 form-select shadow-none" style="width: 100%; height: 36px;">
+                <select class="select2 form-select shadow-none" name="category_id" style="width: 100%; height: 36px;">
                     <option>--Chọn danh mục--</option>
                     @foreach ($categories as $category)
-                        <option value="{{$category->id}}" {{$category->id = $sub_category->category_id ? 'selected' : ''}}>{{$category->name}}</option>
+                        <option value="{{$category->id}}" {{$category->id == $sub_category->category_id ? 'selected' : ''}}>{{$category->name}}</option>
                     @endforeach
                 </select>
             </div>

@@ -6,9 +6,16 @@
             <li class="item1">
                 <a href="#">{{$category->name}} <i class="fa-solid fa-angle-down"></i> </a>
                 @if ($category->subCategory)
-                    <ul class="cute">
+                    <ul class="cute" style="display: none">
                         @foreach ($category->subCategory as $subcate )
-                        <li class="subitem1"><a href="{{url('product?category='.$category->id.'&subcategory='.$subcate->id)}}">{{$subcate->name}} </a></li>
+                        <li class="subitem1">
+                            @if (isset($subcategory_id))
+                            <a href="{{url('category/'.$category->id.'/'.'sub_category/'.$subcate->id.'/products')}}" class="{{$subcate->id == $subcategory_id ? 'active' : ''}}">{{$subcate->name}} </a>
+
+                            @else
+                            <a href="{{url('category/'.$category->id.'/'.'sub_category/'.$subcate->id.'/products')}}">{{$subcate->name}} </a>
+                            @endif
+                        </li>
                         @endforeach
                     </ul>
                 @endif
@@ -17,13 +24,6 @@
         </ul>
     </div>
     <div class="chain-grid menu-chain">
-        <a href="single.html"><img class="img-responsive chain" src="images/wat.jpg" alt=" " /></a>
-        <div class="grid-chain-bottom chain-watch">
-            <span class="actual dolor-left-grid">300$</span>
-            <span class="reducedfrom">500$</span>
-            <h6>Lorem ipsum dolor</h6>
-        </div>
+        @yield('sidebar')
     </div>
-    <a class="view-all all-product" href="product.html">VIEW ALL PRODUCTS<span> </span></a>
 </div>
-<div class="clearfix"></div>

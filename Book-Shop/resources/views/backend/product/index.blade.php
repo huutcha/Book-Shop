@@ -66,7 +66,7 @@ Danh sách sản phẩm
         @foreach ($products as $product)
             <tr>
                 <td>{{$product->product_code}}</td>
-                <td>{{$product->information->name}}</td>
+                <td class="nowrap">{{$product->information->name}}</td>
                 <td>{{$product->quantity}}</td>
                 @if ($product->promotion)
                     <td>

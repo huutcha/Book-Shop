@@ -4,52 +4,49 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
-use App\Models\ProductInfomation;
-use App\Models\Promotion;
+use App\Models\Category;
+use App\Models\SubCategory;
 
 class ProductController extends Controller
 {
-    //
-    public function index()
-    {
-        $products = Product::all();
-        return view('backend.product.index', compact('products'));
+    public function home(){
+        $categories = Category::all();
+        $date = time() - 259200;
+        $lastestProducts = Product::whereRaw('created_at >= ?', [date( 'Y-m-d',$date)])->orderBy('created_at', 'desc')->limit(6)->get();
+        return view('frontend.index', compact('categories'), compact('lastestProducts'));
     }
 
-    public function show(Product $product)
-    {
-        $product_infomation = ProductInfomation::find($product->id);
-        return view('backend.product.show', compact('product', 'product_infomation'));
+    public function shop($category_id, $subcategory_id, Request $request){
+        $categories = Category::all();
+
+        $products = SubCategory::find($subcategory_id)->product;
+
+        if ($request->query('sort')){
+            if ($request->query('sort') == 'new'){
+                $products = SubCategory::find($subcategory_id)->product->sortByDesc('created_at');
+            }
+        }
+        return view('frontend.shop.index', [
+            'categories' => $categories,
+            'subcategory_id' => $subcategory_id,
+            'products' => $products,
+        ]);
     }
 
-    public function create()
-    {    
-        $promotions = Promotion::all();
-        return view('backend.product.create', compact('promotions'));
-    }
-
-    public function store(Request $request)
-    {
-        Product::create($request->input());
-        ProductInfomation::create($request->input());
-        return redirect('admin/products');
-    }
-
-    public function edit(Product $product)
-    {
-        $promotions = Promotion::all();
-        return view('backend.product.edit', compact('product'), compact('promotions'));
-    }
-
-    public function update(Request $request, Product $product)
-    {
-        $product->update($request->input());
-        return redirect('admin/products');
-    }
-
-    public function destroy(Product $product)
-    {
-        $product->delete();
-        return redirect('admin/products');
+    public function show($id){
+        $product = Product::find($id);
+        $productsSame = collect();
+        foreach ($product->subCategory as $subCate){
+            foreach ($subCate->product as $pro){
+                $productsSame->push($pro);
+            }
+        }
+        // dd($productsSame);
+        $categories = Category::all();
+        return view('frontend.product.detail', [
+            'categories' => $categories,
+            'product' => $product,
+            'productsSame' => $productsSame,
+        ]);
     }
 }

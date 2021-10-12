@@ -39,7 +39,7 @@
         <div class="container">
             <div class="header-bottom-left">
                 <div class="logo">
-                    <a href="index.html"><img src="images/logo.png" alt=" " /></a>
+                    <a href="{{url('/')}}"><img src="images/logo.png" alt=" " /></a>
                 </div>
                 <div class="search">
                     <input type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" >
@@ -49,7 +49,21 @@
                 <div class="clearfix"> </div>
             </div>
             <div class="header-bottom-right"> 
-                    <div class="cart"><a href="#"><span><i class="fa-solid fa-cart-shopping"></i></span>CART</a></div>
+                    <div class="cart">
+                        <a href="{{url('/cart')}}" class="position-relative">
+                            <span><i class="fa-solid fa-cart-shopping"></i></span>
+                            CART
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="display:none">
+                            </span>
+                        </a>
+                        
+                        <div class="cart-container">
+                            <ul id="cart-list-item">
+                                
+                            </ul>
+                            <a class="link-cart" href="{{url('/cart')}}">XEM GIỎ HÀNG</a>
+                        </div>
+                    </div>
                     @if (Auth::check())
                         <div class="account"><a href="login.html"><span><i class="fa-solid fa-user"></i> </span>YOUR ACCOUNT</a></div>
                     @else

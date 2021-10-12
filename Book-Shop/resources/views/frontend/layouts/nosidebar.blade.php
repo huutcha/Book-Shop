@@ -30,14 +30,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     @include('frontend.layouts._header')
     <div class="container">
         <div class="row mt-4">
-            <div class="col-md-3">
-                @include('frontend.layouts._sidebar')
-            </div>
-            <div class="col-md-9">
+            
+            <div >
                 @yield('content')
             </div>
         </div>
-        @yield('content-botttom')
+       
     </div>
     @include('frontend.layouts._footer')
 
@@ -45,7 +43,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script src="{{asset('frontend/js/jquery.min.js')}}"></script>
     <script src="{{asset('assets/libs/bootstrap/dist/js/bootstrap.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.22.0/axios.min.js" integrity="sha512-m2ssMAtdCEYGWXQ8hXVG4Q39uKYtbfaJL5QMTbhl2kc6vYyubrKHhr6aLLXW4ITeXSywQLn1AhsAaqrJl8Acfg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    
     @stack('link-js')
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!-- Code injected by live-server -->
