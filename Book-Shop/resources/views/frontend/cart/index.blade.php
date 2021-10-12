@@ -21,26 +21,29 @@ Giỏ hàng
 </style>
 @endpush
 @section('content')
-<h3>Giỏ hàng của tôi</h3>
-<hr>
-<table class="table" id="cart-table">
-    <thead>
-        <tr>
-            <th></th>
-            <th>Sản phẩm</th>
-            <th>Số lượng</th>
-            <th>Đơn giá</th>
-            <th>Thành tiền</th>
-        </tr>
-    </thead>
-    <tbody id="cart-data">
+<div class="content">
+    <h3>Giỏ hàng của tôi</h3>
+    <hr>
+    <table class="table" id="cart-table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Đơn giá</th>
+                <th>Thành tiền</th>
+            </tr>
+        </thead>
+        <tbody id="cart-data">
+            
+            
+        </tbody>
         
-    </tbody>
-    
-</table>
-<h5 style="text-align: right" >Tổng tiền: <span id="total-price"></span> VNĐ</h5>
-<div class="mt-4" style="text-align: right">
-    <button  class="btn btn-success">Xác nhận thanh toán</button>
+    </table>
+    <h5 style="text-align: right" >Tổng tiền: <span id="total-price"></span> VNĐ</h5>
+    <div class="mt-4" style="text-align: right">
+        <a href="{{url('/payment')}}" class="btn btn-success">Xác nhận thanh toán</a>
+    </div>
 </div>
 @endsection
 @push('js')

@@ -6,8 +6,70 @@
 @push('link-css')
 <link rel="stylesheet" href="{{asset('frontend/css/etalage.css')}}" type="text/css" media="all" />
 @endpush
+@push('css')
+<style>
+    .comment-list-item{
+        display: flex;
+        /* align-items: center; */
+        padding: 6px 12px;
+        background-color: #f0f0f0;
+        border-radius: 10px;
+        margin-bottom: 8px;
+    }
+    .comment-content{
+        font-size: 14px;
+        margin-left: 10px; 
+    }
+    .comment-content input{
+        width: 100%;
+    }
+    .comment-name{
+        font-weight: bold;
+        margin-left: 10px;
+    }
+    .comment-control{
+        width: 40px;
+        margin-left: 10px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+    .comment-control .sub{
+        display: none;
+        position: absolute;
+        top:80%;
+        right: 50%;
+    }
+    .comment-control .sub div{
+        border: 1px solid black;
+        padding: 2px 4px;
+        font-size: 12px;
+        line-height: 14px;
+    }
+    .comment-control .sub div:hover{
+        background-color: blue;
+        color: white;
+        cursor: pointer;
+    }
+    .comment{
+        padding: 6px 12px;
+    }
+    .comment .form{
+        flex: 1;
+        margin-left: 10px;
+        display: flex;
+        align-items: flex-start;
+    }
+    .comment .form button {
+        margin-left: 10px;
+    }
+</style>
+    
+@endpush
 @section('content')
-<div class="single_top">
+<div class="content">
     <div class="single_grid">
         <div class="grid images_3_of_2">
             <ul id="etalage">
@@ -58,33 +120,66 @@
         <div class="clearfix"></div>
     </div>
     <div class="toogle">
-        <h3 class="m_3">Product Details</h3>
+        <h3 class="m_3">Mô tả sản phẩm</h3>
         <p class="m_text">
             Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit
             lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio
             dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.
         </p>
     </div>
-    <div>
-        <h3 class="m_3 mb-4">Sản phẩm cùng thể loại</h3>
+</div>
+<div class="content mt-4">
+    <h5>Bình luận</h5>
+    <ul class="comment-list">
+    </ul>
+    <div class="comment d-flex">
+        @if (Auth::check())
+            @if (Auth::user()->information->avatar)
+                <img src="{{asset('storage/avatars/'.Auth::user()->information->avatar)}}" class="rounded-circle" width="50" height="50" alt="">
+            @else
+                <img src="{{asset('assets/images/users/user.jpg')}}" class="rounded-circle" width="50" height="50"/>
+            @endif
+            <div class="form" >
+                <textarea name="comment" id=""  class="form-control" placeholder="Viết bình luận ..." ></textarea>
+                <button class="btn btn-success" data-product="{{$product->id}}" id="send-comment">Gửi</button>
+            </div>
+        @else
+            <p class="text-center">Đăng nhập để viết bình luận. <a href="{{url('/login')}}">Đăng nhập</a></p>
+        @endif
+            
+            
+    </div>
+</div>
+
+
+@endsection
+@section('content-botttom')
+<div class="labels">
+    <h5 class="latest-product">SẢN PHẨM CÙNG THỂ LOẠI</h5>
+    <a class="view-all" href="product.html">XEM TẤT CẢ<span> </span></a>
+</div>
+<div class="content mt-4">
+    <div class="p-4">
         <ul id="flexiselDemo1">
             @foreach ($productsSame as $productSame)
                 <li>
-                    <div class="chain-grid" style="width:240px">
-                        <a href="{{url('products/'.$productSame->id)}}" class="chain-container"><img class="img-responsive chain" src="{{asset('storage/products/'.$productSame->image[0]->path)}}" alt=" " /></a>
-                        <span class="star"> </span>
-                        <div class="grid-chain-bottom mb-3">
-                            <h6><a href="{{url('products/'.$productSame->id)}}">{{$productSame->information->name}}</a></h6>
-                            
+                    <div style="padding: 0 20px">
+                        <div class="chain-grid" style="">
+                            <a href="{{url('products/'.$productSame->id)}}" class="chain-container"><img class="img-responsive chain" src="{{asset('storage/products/'.$productSame->image[0]->path)}}" alt=" " /></a>
+                            <span class="star"> </span>
+                            <div class="grid-chain-bottom mb-3">
+                                <h6><a href="{{url('products/'.$productSame->id)}}">{{$productSame->information->name}}</a></h6>
+                                
+                            </div>
                         </div>
                     </div>
+                    
                 </li>
             @endforeach
         </ul>
     </div>
     
 </div>
-
 @endsection
 @push('link-js')
 <script src="{{asset('frontend/js/jquery.etalage.min.js')}}"></script>
@@ -110,7 +205,7 @@
 <script type="text/javascript">
     $(window).load(function() {
        $("#flexiselDemo1").flexisel({
-           visibleItems: 3,
+           visibleItems: 4,
            animationSpeed: 1000,
            autoPlay: true,
            autoPlaySpeed: 3000,    		
@@ -134,10 +229,84 @@
        
    });
  </script>
+
+ <script>
+     function loadComment(){
+         var product_id = {{$product->id}};
+         var user = {}
+         user.id = {{Auth::user() ? Auth::user()->id : 0}}
+         user.role = '{{Auth::user() ? Auth::user()->role : 10}}'
+         var url = "/comment/product/" + product_id
+         axios.get(url)
+            .then((res) => {
+                var htmls = "";
+                var html = ""
+                res.data.forEach(function(comment){
+                    if (user.id == comment.user_id){
+                        html = `<li class="comment-list-item" data-comment="${comment.id}">
+                                <img src="{{asset('storage/avatars/${comment.avatar}')}}" class="rounded-circle" width="50" height="50"/>
+                                <div style="flex:1">
+                                    <div class="comment-name">
+                                        ${comment.username ? comment.username : 'Người dùng'}
+                                    </div>
+                                    <div class="comment-content">
+                                        ${comment.comment}
+                                    </div>
+                                </div>
+                                <div class="comment-control">
+                                    <i class="fas fa-ellipsis-v" style="padding: 8px 14px; cursor: pointer;"></i>
+                                    <div class="sub">
+                                        <div class="fix">Sửa</div>
+                                        <div class="delete">Xóa</div>
+                                    </div>
+                                </div>
+                            </li>`
+                    } else {
+                        if (user.role == 'RootAdmin' || user.role == 'Admin'){
+                            html = `<li class="comment-list-item" data-comment="${comment.id}">
+                                <img src="{{asset('storage/avatars/${comment.avatar}')}}" class="rounded-circle" width="50" height="50"/>
+                                <div style="flex:1">
+                                    <div class="comment-name">
+                                        ${comment.username ? comment.username : 'Người dùng'}
+                                    </div>
+                                    <div class="comment-content">
+                                        ${comment.comment}
+                                    </div>
+                                </div>
+                                <div class="comment-control">
+                                    <i class="fas fa-ellipsis-v" style="padding: 8px 14px; cursor: pointer;"></i>
+                                    <div class="sub">
+                                        <div class="delete">Xóa</div>
+                                    </div>
+                                </div>
+                            </li>`
+                        }
+                        else {
+                            html = `<li class="comment-list-item" data-comment="${comment.id}">
+                                <img src="{{asset('storage/avatars/${comment.avatar}')}}" class="rounded-circle" width="50" height="50"/>
+                                <div style="flex:1">
+                                    <div class="comment-name">
+                                        ${comment.username ? comment.username : 'Người dùng'}
+                                    </div>
+                                    <div class="comment-content">
+                                        ${comment.comment}
+                                    </div>
+                                </div>
+                            </li>`
+                        }
+                    }
+                    htmls += html
+                })
+                $('.comment-list').html(htmls);
+            })
+            .catch((res) => {
+                console.log(res);
+            })
+     }
+ </script>
+ <script>loadComment();</script>
  <script>
         $('#add-cart').click(function(){
-            console.log($(this).data('product'));
-            console.log($(this).siblings('.quantity').children('#quantity').val());
             axios.post('/cart', {
                 product_id: $(this).data('product'),
                 quantity: $(this).siblings('.quantity').children('#quantity').val()
@@ -149,10 +318,60 @@
                 console.log(error);
             });
         })
-    
+        $('#send-comment').click(function(){
+            axios.post('/comment', {
+                comment : $(this).siblings('textarea').val(),
+                product : $(this).data('product')
+            })
+                .then((res) => {
+                    loadComment()
+                })
+                .catch((res) => {
+                    console.log(res);
+                })
+        })
      
     //  $(function(){
     //      $('#add-cart').click
     //  })
+    $('.comment-list').on('click', '.comment-control', function(){
+        $(this).children('.sub').toggle()
+    })
+    $('.comment-list').on('click', '.fix', function(){
+        var commentNode = $(this).parents('.comment-list-item');
+        var content = commentNode.find('.comment-content');
+        var oldVal = content.text();
+        html = `<input type="text">`
+        content.html(html)
+        content.children('input').focus();
+        commentNode.on('keyup', 'input',function(e){
+            if(e.keyCode == 13)
+            {
+                // console.log($(this).val());
+                var url = '/comment/' + commentNode.data('comment')
+                // console.log(url);
+                axios.put(url, {content: $(this).val()})
+                    .then((res) => {
+                        loadComment();
+                    })
+                    .catch((res) => {
+                        console.log(res);
+                    })
+            }
+        });
+    })
+    $('.comment-list').on('click', '.delete', function(){
+        var commentNode = $(this).parents('.comment-list-item');
+        var url = '/comment/' + commentNode.data('comment')
+                // console.log(url);
+                axios.delete(url)
+                    .then((res) => {
+                        loadComment();
+                    })
+                    .catch((res) => {
+                        console.log(res);
+                    })
+    })
  </script>
+ 
 @endpush

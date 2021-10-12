@@ -36,9 +36,9 @@ Chi tiết đơn hàng
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th class="text-center">Mã sản phẩm</th>
+                                <th class="text-center" style="width: 120px;">Mã sản phẩm</th>
                                 <th>Tên sản phẩm</th>
-                                <th class="text-end">Số lượng</th>
+                                <th class="text-end" style="width: 100px;">Số lượng</th>
                                 <th class="text-end">Đơn giá</th>
                                 <th class="text-end">Thành tiền</th>
                             </tr>
@@ -50,7 +50,10 @@ Chi tiết đơn hàng
                             @foreach ($order->product as $product)
                                 <tr>
                                     <td class="text-center">{{$product->product_code}}</td>
-                                    <td>Tên sản phẩm</td>
+                                    <td class="d-flex">
+                                        <img src="{{asset('/storage/products/'.$product->image[0]->path)}}" alt="" width="80">
+                                        <p class="ms-2">{{$product->information->name}}</p>
+                                    </td>
                                     <td class="text-end">{{$product->pivot->quantity}}</td>
                                     <td class="text-end">{{$product->price}} VNĐ</td>
                                     <td class="text-end">{{$product->pivot->quantity * $product->price}} VNĐ</td>
@@ -67,9 +70,9 @@ Chi tiết đơn hàng
             <div class="col-md-12">
                 <div class="pull-right mt-4 text-end">
                     <p>Tổng giá: {{$total}} VNĐ</p>
-                    <p>vat (10%) : {{ceil($total / 10)}} VNĐ</p>
+                    {{-- <p>vat (10%) : {{ceil($total / 10)}} VNĐ</p> --}}
                     <hr />
-                    <h3><b>Thành tiền :</b> {{$total - ceil($total / 10)}} VNĐ</h3>
+                    <h3><b>Thành tiền :</b> {{$total}} VNĐ</h3>
                 </div>
                 <div class="clearfix"></div>
                 <hr />
