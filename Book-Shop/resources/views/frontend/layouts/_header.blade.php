@@ -14,7 +14,7 @@
                 <div class="clearfix"> </div>
             </div>
             <div class="top-header-right">
-                <div class="down-top">		
+                <div class="down-top">
                       <select class="in-drop">
                           <option value="English" class="in-of">English</option>
                           <option value="Japanese" class="in-of">Japanese</option>
@@ -24,15 +24,15 @@
                  </div>
                 <div class="down-top top-down">
                       <select class="in-drop">
-                      
+
                       <option value="Dollar" class="in-of">Dollar</option>
                       <option value="Yen" class="in-of">Yen</option>
                       <option value="Euro" class="in-of">Euro</option>
                         </select>
                  </div>
-                <div class="clearfix"> </div>	
+                <div class="clearfix"> </div>
             </div>
-            <div class="clearfix"> </div>		
+            <div class="clearfix"> </div>
         </div>
     </div>
     <div class="bottom-header">
@@ -48,7 +48,8 @@
                 </div>
                 <div class="clearfix"> </div>
             </div>
-            <div class="header-bottom-right"> 
+            <div class="header-bottom-right">
+
                     <div class="cart">
                         <a href="{{url('/cart')}}" class="position-relative">
                             <span><i class="fa-solid fa-cart-shopping"></i></span>
@@ -56,16 +57,33 @@
                             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="display:none">
                             </span>
                         </a>
-                        
+
                         <div class="cart-container">
                             <ul id="cart-list-item">
-                                
+
                             </ul>
                             <a class="link-cart" href="{{url('/cart')}}">XEM GIỎ HÀNG</a>
                         </div>
                     </div>
                     @if (Auth::check())
-                        <div class="account"><a href="login.html"><span><i class="fa-solid fa-user"></i> </span>YOUR ACCOUNT</a></div>
+                    <div class="cart">
+                        <a href="{{url('/#')}}" class="position-relative">
+                            <span><i class="fa-solid fa-cart-shopping"></i></span>
+                            {{Auth::user()->information->fullname}}
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="display:none">
+                            </span>
+                        </a>
+
+                        <div class="cart-container">
+                            <ul id="cart-list-item">
+
+                            </ul>
+                            <a class="link-cart" href="{{url('/orders')}}">Đơn hàng đã mua</a>
+                            <a class="link-cart" href="{{url('/profile')}}">Thông tin tài khoản</a>
+                            <a class="link-cart" href="{{url('/logout')}}">Đăng xuất</a>
+                        </div>
+                    </div>
+                        {{-- <div class="account"><a href="#"><span><i class="fa-solid fa-user"></i> </span>{{Auth::user()->information->fullname}}</a></div> --}}
                     @else
                     <ul class="login">
                         <li><a href="{{url('/login')}}"><span><i class="fa-solid fa-lock"></i></span>ĐĂNG NHẬP</a></li> |
@@ -74,7 +92,7 @@
                     @endif
                 <div class="clearfix"> </div>
             </div>
-            <div class="clearfix"> </div>	
+            <div class="clearfix"> </div>
         </div>
     </div>
 </div>

@@ -9,10 +9,18 @@ use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Category;
+
 class OrderController extends Controller
 {
+    public function index(){
+        $categories = Category::all();
+        $orders = Order::all();
+        return view('frontend.order.index', compact('orders', 'categories'));
+    }
+
     public function create(){
-        
+
         $order = Order::create([
             'price' => Session::get('myCart')->totalPrice(),
             'state' => 0,

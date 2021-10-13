@@ -1,4 +1,4 @@
-@extends('backend.layouts.main')
+@extends('frontend.layouts.main')
 
 @section('title')
     Thêm hồ sơ người dùng
