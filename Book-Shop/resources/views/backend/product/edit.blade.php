@@ -7,6 +7,7 @@ Chỉnh sửa sản phẩm
 @endsection
 @push('link-css')
 <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/select2/dist/css/select2.min.css')}}" />
+<link rel="stylesheet" type="text/css" href="{{asset('assets/libs/quill/dist/quill.snow.css')}}" />
 @endpush
 @section('content')
 <form action="{{url('admin/products/'.$product->id)}}" method="post" enctype="multipart/form-data">
@@ -40,13 +41,20 @@ Chỉnh sửa sản phẩm
                         @enderror
                     </div>
                     <div class="form-group col-md-3">
+                        <label for="" class="">Giá khuyến mãi(VNĐ)</label>
+                        <input type="text" class="form-control @error('price_sale') is-invalid @enderror" id="" value="{{old('price_sale') ? old('price_sale') : $product->price_sale}}" name="price_sale" />
+                        @error('price_sale')
+                            <div class="invalid-feedback">{{$message}}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group col-md-3">
                         <label for="" class="">Số lượng</label>
                         <input type="text" class="form-control @error('quantity') is-invalid @enderror" id="" value="{{old('quantity') ? old('quantity') : $product->quantity}}" name="quantity" />
                         @error('quantity')
                             <div class="invalid-feedback">{{$message}}</div>
                         @enderror
                     </div>
-                    <div class="form-group col-md-3">
+                    {{-- <div class="form-group col-md-3">
                         <label for="" class="">Khuyến mãi</label>
                         <select class="select2 form-select shadow-none" name="promotion_id" style="width: 100%; height: 36px;">
                             <option value="0">--Chọn chương trình--</option>
@@ -54,7 +62,7 @@ Chỉnh sửa sản phẩm
                                 <option value="{{$promotion->id}}" {{$product->promotion_id == $promotion->id ? 'selected' : ''}}>{{$promotion->name}}</option>
                             @endforeach
                         </select>
-                    </div>
+                    </div> --}}
                     <h5 class="card-title mt-4">Mô tả sản phẩm</h5>
                     <div class="row">
                         <div class="form-group col-md-6">
@@ -75,6 +83,11 @@ Chỉnh sửa sản phẩm
                             <label for="" class="">Năm xuất bản</label>
                             <input type="text" class="form-control" id="" value="{{old('year') ? old('year') : $product->information->year}}" name="year" />
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Mô tả sản phẩm</label>
+                        <textarea name="decs" id="decs" cols="30" style="display:none" rows="10">{{$product->information->decs}}</textarea>
+                        <div id="quillEditor" style="height: 300px"></div>
                     </div>
                 </div>
             </div>
@@ -127,6 +140,7 @@ Chỉnh sửa sản phẩm
 @push('link-js')
 <script src="{{asset('assets/libs/select2/dist/js/select2.full.min.js')}}"></script>
 <script src="{{asset('assets/libs/select2/dist/js/select2.min.js')}}"></script>
+<script src="{{asset('assets/libs/quill/dist/quill.min.js')}}"></script>
 @endpush
 @push('js')
 
@@ -149,6 +163,26 @@ Chỉnh sửa sản phẩm
         }
         
     }
-    
+    if ($("#quillEditor").length) {
+        var quill = new Quill('#quillEditor', {
+        modules: {
+            toolbar: [
+            [{
+                header: [1, 2, false]
+            }],
+            ['bold', 'italic', 'underline'],
+            ['image', 'code-block']
+            ]
+        },
+        placeholder: 'Mô tả sản phẩm...',
+        theme: 'snow' // or 'bubble'
+        });
+    }
+    // $('.ql-editor').removeClass('ql-blank')
+    // console.log($("#decs").text());
+    $('.ql-editor').html($("#decs").text())
+    $('form').on('submit', function(){
+        $("#decs").val($("#quillEditor .ql-editor").html())
+    })
 </script>
 @endpush

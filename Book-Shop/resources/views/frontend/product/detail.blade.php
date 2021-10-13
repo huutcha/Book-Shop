@@ -65,6 +65,25 @@
     .comment .form button {
         margin-left: 10px;
     }
+    .decs.hide{
+        max-height: 200px;
+        overflow: hidden;
+    }
+    .decs{
+        color: #707070;
+        position: relative;
+    }
+    .more{
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        cursor: pointer;
+        padding: 10px 0;
+        backdrop-filter: blur(2px);
+        color: blue;
+    }
 </style>
     
 @endpush
@@ -121,11 +140,12 @@
     </div>
     <div class="toogle">
         <h3 class="m_3">Mô tả sản phẩm</h3>
-        <p class="m_text">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit
-            lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio
-            dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum.
-        </p>
+        <div class="decs hide">
+            {!! $product->information->decs !!}
+            <div class="more">
+                Xem thêm
+            </div>
+        </div>
     </div>
 </div>
 <div class="content mt-4">
@@ -371,6 +391,14 @@
                     .catch((res) => {
                         console.log(res);
                     })
+    })
+    $('.more').click(function(){
+        $(this).parents('.decs').toggleClass('hide')
+        if (!$(this).parents('.decs').hasClass('hide')){
+            $(this).text('Ẩn bớt')
+        } else {
+            $(this).text('Xem thêm')
+        }
     })
  </script>
  
