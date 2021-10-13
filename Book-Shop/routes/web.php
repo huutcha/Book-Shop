@@ -4,11 +4,15 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AuthenticateController;
 use App\Http\Controllers\ProductController;
+
+use App\Http\Controllers\ServiceController;
+
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\SearchController;
+
 
 
 /*
@@ -32,6 +36,16 @@ Route::post('/login', [AuthenticateController::class, 'login']);
 Route::get('/register', [AuthenticateController::class, 'showRegister']);
 Route::post('/register', [AuthenticateController::class, 'register']);
 
+Route::get('/logout', [AuthenticateController::class, 'logout']);
+Route::get('/contact', [ServiceController::class, 'showContact']);
+Route::get('/security', [ServiceController::class, 'showSecurity']);
+Route::get('terms', [ServiceController::class, 'showTerms']);
+Route::get('transport', [ServiceController::class, 'showTransport']);
+Route::get('change', [ServiceController::class, 'showChange']);
+Route::get('buys', [ServiceController::class, 'showBuys']);
+Route::get('introduce', [ServiceController::class, 'showIntroduce']);
+
+
 
 Route::get('/cart', [CartController::class, 'showCart']);
 Route::put('/cart', [CartController::class, 'update']);
@@ -49,6 +63,4 @@ Route::group(['middleware' => 'auth'], function(){
 
 Route::get('/search', [SearchController::class, 'search']);
 
-Route::get('/logout', function(){
-    Auth::logout();
-});
+

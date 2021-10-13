@@ -2,7 +2,7 @@
     <div class="footer-top">
         <div class="container">
             <div class="latter">
-                <h6>NEWS-LETTER</h6>
+                <h6>ĐĂNG KÍ NHẬN BẢN TIN</h6>
                 <div class="sub-left-right">
                     <form>
                         <input type="text" value="Enter email here"onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter email here';}" />
@@ -43,32 +43,23 @@
                 </ul>
             </div>
             <div class="footer-bottom-cate bottom-grid-cat">
-                <h6>FEATURE PROJECTS</h6>
+                <h6>DỊCH VỤ</h6>
                 <ul>
-                    <li><a href="#">Curabitur sapien</a></li>
-                    <li><a href="#">Dignissim purus</a></li>
-                    <li><a href="#">Tempus pretium</a></li>
-                    <li ><a href="#">Dignissim neque</a></li>
+                    <li><a href="{{url('/contact')}}">Liên Hệ</a></li>
+                    <li><a href="{{url('/terms')}}">Điều khoản sử dụng</a></li>
+                    <li><a href="{{url('/security')}}">Chính sách bảo mật</a></li>
+                    <li><a href="{{url('/introduce')}}">Giới thiệu Book - Shop</a></li>
                     <li ><a href="#">Ornared id aliquet</a></li>
-                    <li><a href="#">Ultrices id du</a></li>
-                    <li><a href="#">Commodo sit</a></li>
                 </ul>
             </div>
             <div class="footer-bottom-cate">
-                <h6>TOP BRANDS</h6>
+                <h6>Hỗ trợ</h6>
                 <ul>
-                    <li><a href="#">Curabitur sapien</a></li>
-                    <li><a href="#">Dignissim purus</a></li>
-                    <li><a href="#">Tempus pretium</a></li>
-                    <li ><a href="#">Dignissim neque</a></li>
+                    <li><a href="{{url('/change')}}">Chính sách đổi - trả - hoàn tiền</a></li>
+                    <li><a href="{{url('/buys')}}">Chính sách khách sỉ</a></li>
+                    <li><a href="{{url('/transport')}}">Phương thức vận chuyển</a></li>
+                    <li><a href="#">Phương thức thanh toán và xuất HĐ</a></li>
                     <li ><a href="#">Ornared id aliquet</a></li>
-                    <li><a href="#">Ultrices id du</a></li>
-                    <li><a href="#">Commodo sit</a></li>
-                    <li ><a href="#">Urna ac tortor sc</a></li>
-                    <li><a href="#">Ornared id aliquet</a></li>
-                    <li><a href="#">Urna ac tortor sc</a></li>
-                    <li ><a href="#">Eget nisi laoreet</a></li>
-                    <li ><a href="#">Faciisis ornare</a></li>
                 </ul>
             </div>
             <div class="footer-bottom-cate cate-bottom">

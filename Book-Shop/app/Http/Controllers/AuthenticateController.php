@@ -49,4 +49,11 @@ class AuthenticateController extends Controller
         $user->information->update($request->input());
         return redirect('/login');
     }
+
+    public function logout(){
+        Auth::logout();
+        return redirect('login');
+    }
 }
+
+
