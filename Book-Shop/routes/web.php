@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthenticateController;
 use App\Http\Controllers\ProductController;
-
+use App\Http\Controllers\ServiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,4 +26,10 @@ Route::post('/login', [AuthenticateController::class, 'login']);
 Route::get('/register', [AuthenticateController::class, 'showRegister']);
 Route::post('/register', [AuthenticateController::class, 'register']);
 Route::get('/logout', [AuthenticateController::class, 'logout']);
-
+Route::get('/contact', [ServiceController::class, 'showContact']);
+Route::get('/security', [ServiceController::class, 'showSecurity']);
+Route::get('terms', [ServiceController::class, 'showTerms']);
+Route::get('transport', [ServiceController::class, 'showTransport']);
+Route::get('change', [ServiceController::class, 'showChange']);
+Route::get('buys', [ServiceController::class, 'showBuys']);
+Route::get('introduce', [ServiceController::class, 'showIntroduce']);
