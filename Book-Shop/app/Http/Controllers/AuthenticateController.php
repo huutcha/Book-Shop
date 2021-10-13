@@ -47,7 +47,7 @@ class AuthenticateController extends Controller
         $user = User::create(['email' => $email, 'password' => $password, 'role' => 3]);
         UsersInformation::create(['user_id' => $user->id]);
         $user->information->update($request->input());
-        return redirect('/');
+        return redirect('/login');
     }
 
     public function logout(){

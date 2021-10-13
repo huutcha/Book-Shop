@@ -22,10 +22,10 @@ use App\Http\Controllers\Admin\PromotionController;
 
 Route::group(['prefix' => 'admin'],function (){
 
-    Route::get('login', [AuthenticateController::class, 'showLoginForm'])->name('login');
+    Route::get('login', [AuthenticateController::class, 'showLoginForm'])->name('loginAdmin');
     Route::post('login', [AuthenticateController::class, 'login']);
 
-    Route::group(['middleware' => ['auth', 'isAdmin']], function(){
+    Route::group(['middleware' => ['authAdmin', 'isAdmin']], function(){
         Route::get('/', function (){
             return view('backend.index');
         });

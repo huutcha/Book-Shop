@@ -6,7 +6,7 @@
             <li class="item1">
                 <a href="#">{{$category->name}} <i class="fa-solid fa-angle-down"></i> </a>
                 @if ($category->subCategory)
-                    <ul class="cute">
+                    <ul class="cute" style="display: none">
                         @foreach ($category->subCategory as $subcate )
                         <li class="subitem1">
                             @if (isset($subcategory_id))
@@ -27,4 +27,3 @@
         @yield('sidebar')
     </div>
 </div>
-<div class="clearfix"></div>
