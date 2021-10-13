@@ -11,12 +11,12 @@ class OrderController extends Controller
     public function index(){
         $categories = Category::all();
         $orders = Order::all();
-        return view('frontend.order.index', compact('orders', 'categories'));
+        return view('backend.order.index', compact('orders', 'categories'));
     }
     public function create()
     {
         $orders = Order::all();
-        return view('frontend.order.create', compact('ordes'));
+        return view('backend.order.create', compact('ordes'));
     }
 
     public function store(Request $request)
@@ -27,7 +27,7 @@ class OrderController extends Controller
     }
     public function show($id){
         $order = Order::find($id);
-        return view('frontend.order.show', compact('order'));
+        return view('backend.order.show', compact('order'));
     }
 
     public function update($id, Request $request){
@@ -40,7 +40,7 @@ class OrderController extends Controller
             }
             $order->update(['state' => 2]);
         }
-        return redirect('orders');
+        return redirect('admin/orders');
     }
 
     public function destroy($id){

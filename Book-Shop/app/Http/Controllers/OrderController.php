@@ -15,9 +15,11 @@ class OrderController extends Controller
 {
     public function index(){
         $categories = Category::all();
-        $orders = Order::all();
+        $orders = Auth::user()->order;
+        // $orders = Order::all();
         return view('frontend.order.index', compact('orders', 'categories'));
     }
+
 
     public function create(){
 
@@ -32,5 +34,11 @@ class OrderController extends Controller
         }
         Session::forget('myCart');
         return 1;
+    }
+
+    public function show($id){
+        $categories = Category::all();
+        $order = Order::find($id);
+        return view('frontend.order.show', compact('order', 'categories'));
     }
 }

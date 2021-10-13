@@ -23,9 +23,9 @@ class UserInformationController extends Controller
     // }
 
     public function updateProfile(Request $request) {
-        $request->validate([
-            'email' => 'bail|required|email'
-        ]);
+        // $request->validate([
+        //     'email' => 'bail|required|email'
+        // ]);
         Auth::user()->information->update($request->input());
         return redirect('profile')->withInput();
     }

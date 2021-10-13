@@ -75,11 +75,10 @@
                         </a>
 
                         <div class="cart-container">
-                            <ul id="cart-list-item">
 
-                            </ul>
                             <a class="link-cart" href="{{url('/orders')}}">Đơn hàng đã mua</a>
                             <a class="link-cart" href="{{url('/profile')}}">Thông tin tài khoản</a>
+                            <a class="link-cart" href="{{url('/changepassword')}}">Đổi mật khẩu</a>
                             <a class="link-cart" href="{{url('/logout')}}">Đăng xuất</a>
                         </div>
                     </div>

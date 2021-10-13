@@ -1,4 +1,4 @@
-@extends('frontend.layouts.main')
+@extends('backend.layouts.table')
 @section('title')
 Danh sách đơn hàng
 @endsection
@@ -28,9 +28,9 @@ Danh sách đơn hàng
         <td>{{$order->state_char}}</td>
         <td>{{$order->price}}</td>
         <td>
-            <a class="btn btn-primary" href="{{ url('orders/'.$order->id)}}">Xem chi tiết</a>
+            <a class="btn btn-primary" href="{{ url('admin/orders/'.$order->id)}}">Xem chi tiết</a>
             @if ($order->state == 1 || $order->state == 2)
-                <form method="POST" action="{{url('orders/'.$order->id)}}" class="d-inline" onsubmit="return confirm('Are you sure?')">
+                <form method="POST" action="{{url('admin/orders/'.$order->id)}}" class="d-inline" onsubmit="return confirm('Are you sure?')">
                     @csrf
                     @method('DELETE')
                     <button class="btn btn-danger" type="submit">Delete</button>

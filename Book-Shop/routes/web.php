@@ -34,6 +34,8 @@ Route::post('/register', [AuthenticateController::class, 'register']);
 
 Route::get('/profile',[UserInformationController::class, 'showProfile']);
 Route::put('/profile',[UserInformationController::class, 'updateProfile']);
+Route::get('/changepassword', [AuthenticateController::class, 'changePassword']);
+Route::put('/changepassword', [AuthenticateController::class, 'updatePassword']);
 
 Route::get('/logout', [AuthenticateController::class, 'logout']);
 
