@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ProductInformation extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'author', 'published', 'language', 'year', 'product_id'];
+    protected $fillable = ['name', 'author', 'published', 'language', 'decs', 'year', 'product_id'];
 
     public function product() {
         return $this->belongsTo(Product::class);

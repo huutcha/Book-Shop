@@ -17,8 +17,9 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('product_code');
             $table->integer('quantity');
-            $table->integer('rate')->default('0');
+            // $table->integer('rate')->default('0');
             $table->integer('price');
+            $table->integer('price_sale')->nullable();
             $table->unsignedBigInteger('promotion_id')->nullable();
             $table->timestamps();
             $table->foreign('promotion_id')->references('id')->on('promotions')->onDelete('set null');
