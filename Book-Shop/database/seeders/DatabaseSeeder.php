@@ -49,7 +49,7 @@ class DatabaseSeeder extends Seeder
         ]);
         DB::table('orders')->insert([
             'price' => 12000,
-            'date' => '2021-9-21',
+            // 'date' => '2021-9-21',
             'state' => 0,
             'user_id' => 1,
         ]);

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Product extends Model
 {
@@ -32,5 +33,35 @@ class Product extends Model
 
     public function comment() {
         return $this->hasMany(Comment::class, 'product_id');
+    }
+    static function productBy($type){
+        if ($type == 'day'){
+            return static::select(DB::raw('count(*) as y, DAY(created_at) AS x'))
+                        ->whereRaw('MONTH(created_at) = MONTH(NOW())')
+                        ->groupByRaw('DAY(created_at)')
+                        ->get();
+        }
+        if ($type == 'month'){
+            return static::select(DB::raw('count(*) as y, MONTH(created_at) AS x'))
+                        ->whereRaw('YEAR(created_at) = YEAR(NOW())')
+                        ->groupByRaw('MONTH(created_at)')
+                        ->get();
+        }
+        if ($type == 'new'){
+            return static::select(DB::raw('count(*) as productQuantity'))
+                        ->whereRaw('DAY(created_at) = DAY(NOW())')
+                        ->groupByRaw('DAY(created_at)')
+                        ->get();
+        }
+        
+    }
+
+    static function getSellingProducts(){
+        return static::join('order_product', 'products.id', '=', 'order_product.product_id')
+                    ->join('orders', 'orders.id', '=', 'order_product.order_id')
+                    ->select(DB::raw('products.id ,SUM(order_product.quantity) as sold'))
+                    ->where('orders.state', '=', 1)
+                    ->groupBy('products.id')
+                    ->orderBy('sold', 'desc')->limit(5)->get();
     }
 }

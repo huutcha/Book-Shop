@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -69,5 +70,27 @@ class User extends Authenticatable
         if ($this->attributes['role'] == 3){
             return 'User';
         }
+    }
+
+    static function userBy($type){
+        if ($type == 'day'){
+            return static::select(DB::raw('count(*) as y, DAY(created_at) AS x'))
+                        ->whereRaw('MONTH(created_at) = MONTH(NOW())')
+                        ->groupByRaw('DAY(created_at)')
+                        ->get();
+        }
+        if ($type == 'month'){
+            return static::select(DB::raw('count(*) as y, MONTH(created_at) AS x'))
+                        ->whereRaw('YEAR(created_at) = YEAR(NOW())')
+                        ->groupByRaw('MONTH(created_at)')
+                        ->get();
+        }
+        if ($type == 'new'){
+            return static::select(DB::raw('count(*) as userQuantity'))
+                        ->whereRaw('DAY(created_at) = DAY(NOW())')
+                        ->groupByRaw('DAY(created_at)')
+                        ->get();
+        }
+        
     }
 }
