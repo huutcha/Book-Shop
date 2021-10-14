@@ -37,19 +37,21 @@
     </div>
     <div class="bottom-header">
         <div class="container">
-            <div class="header-bottom-left">
+            <div class="d-flex justify-content-beetween">
                 <div class="logo">
                     <a href="{{url('/')}}"><img src="images/logo.png" alt=" " /></a>
                 </div>
                 <div class="search">
-                    <input type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" >
-                    <input type="submit"  value="SEARCH">
-
+                    <form action="{{url('/search')}}">
+                        <input type="text" name="search" autocomplete="off" id="search-content" value="" placeholder="Tìm kiếm theo tên sách" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" >
+                        <ul class="search-list">
+                        </ul>
+                        <input type="submit" id="search-btn"  value="SEARCH">
+                    </form>
                 </div>
-                <div class="clearfix"> </div>
             </div>
             <div class="header-bottom-right">
-
+                <div class="header-bottom-right"> 
                     <div class="cart">
                         <a href="{{url('/cart')}}" class="position-relative">
                             <span><i class="fa-solid fa-cart-shopping"></i></span>
@@ -91,7 +93,7 @@
                     @endif
                 <div class="clearfix"> </div>
             </div>
-            <div class="clearfix"> </div>
+            </div>
         </div>
     </div>
 </div>

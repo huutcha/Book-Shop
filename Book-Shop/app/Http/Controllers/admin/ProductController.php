@@ -90,7 +90,7 @@ class ProductController extends Controller
             'quantity' => 'required|numeric',
             'name' => 'required',
             'sub_category_id' => 'required',
-            'path' => 'required',
+            // 'path' => 'required',
         ]);
         $product->update($request->input());
         $product->information->update($request->input());

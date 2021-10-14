@@ -24,11 +24,14 @@ Danh sách sản phẩm
         @foreach ($products as $product)
             <tr>
                 <td>{{$product->product_code}}</td>
-                <td class="nowrap">{{$product->information->name}}</td>
+                <td class="nowrap d-flex"> 
+                    <img src="{{asset('storage/products/'.$product->image[0]->path)}}" style="width: 60px; margin-right: 6px;" alt="">
+                    {{$product->information->name}}
+                </td>
                 <td>{{$product->quantity}}</td>
-                @if ($product->promotion)
+                @if ($product->price_sale)
                     <td>
-                        <span class="text-success">{{($product->price) / 100 * (100 - $product->promotion->sale)}}</span>
+                        <span class="text-success">{{$product->price_sale}}</span>
                         <span style="text-decoration-line: line-through">{{$product->price}}</span>
                     </td>
                 @else

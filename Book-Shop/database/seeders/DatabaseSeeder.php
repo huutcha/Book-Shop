@@ -43,13 +43,13 @@ class DatabaseSeeder extends Seeder
         DB::table('products')->insert([
             'product_code' => 'SGK020313',
             'quantity' => 20,
-            'rate' => 4,
             'price' => 12000,
-            'promotion_id' => 1,
+            'price_sale' => 10000,
+            'promotion_id' => null,
         ]);
         DB::table('orders')->insert([
             'price' => 12000,
-            'date' => '2021-9-21',
+            // 'date' => '2021-9-21',
             'state' => 0,
             'user_id' => 1,
         ]);
@@ -62,6 +62,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Sách giáo khoa Toán 7',
             'author' => 'Bộ giáo dục',
             'published' => 'NXB Giáo dục',
+            'decs' => 'Sản phẩm tốt',
             'language' => 'Tiếng Việt',
             'year' => 2008,
             'product_id' => 1,
@@ -73,6 +74,12 @@ class DatabaseSeeder extends Seeder
         DB::table('product_sub_cate')->insert([
             'sub_category_id' => 1,
             'product_id' => 1,
+        ]);
+        DB::table('ratings')->insert([
+            'user_id' => 1,
+            'product_id' => 1,
+            'rate' => 4,
+            'content' => 'Sản phẩm tốt',
         ]);
     }
 }

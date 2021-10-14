@@ -28,6 +28,7 @@ class CreateProductInformationTable extends Migration
             $table->string('author')->nullable();
             $table->string('published')->nullable();
             $table->string('language')->nullable();
+            $table->text('decs')->nullable();
             $table->integer('year')->nullable();
 >>>>>>> huudinh:Book-Shop/database/migrations/2021_09_14_092246_create_product_information_table.php
             $table->timestamps();

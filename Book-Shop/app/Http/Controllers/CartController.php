@@ -49,8 +49,7 @@ class CartController extends Controller
     public function showCart (){
         $categories = Category::all();
         $cart = Session::get('myCart');
-        $products = $cart->products;
-        return view('frontend.cart.index', compact('categories'), compact('products'));
+        return view('frontend.cart.index', compact('categories'));
     }
 
     public function update(Request $request){

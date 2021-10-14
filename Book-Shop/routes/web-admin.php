@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\Sub_CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PromotionController;
+use App\Http\Controllers\Admin\DashboardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,9 +27,7 @@ Route::group(['prefix' => 'admin'],function (){
     Route::post('login', [AuthenticateController::class, 'login']);
 
     Route::group(['middleware' => ['authAdmin', 'isAdmin']], function(){
-        Route::get('/', function (){
-            return view('backend.index');
-        });
+        Route::get('/', [DashboardController::class, 'index']);
         Route::get('/logout', [AuthenticateController::class, 'logout']);
         Route::get('/profile',[UserInformationController::class, 'showProfile']);
         // Route::get('/profile/edit',[UserController::class, 'editProfile']);

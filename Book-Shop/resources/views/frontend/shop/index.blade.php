@@ -63,13 +63,13 @@ Tông hợp sản phẩm
             $('.active').parents('ul.cute').show();
         })
         $('.add-cart').click(function(){
-            console.log($(this).data('product'));
             axios.post('/cart', {
                 product_id: $(this).data('product'),
                 quantity: 1
             })
             .then(function (response) {
                 loadCart();
+                swal("Thành công!", "Thêm sản phẩm vào giỏ hàng thành công!", "success")
             })
             .catch(function (error) {
                 console.log(error);
