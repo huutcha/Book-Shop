@@ -39,7 +39,7 @@ class ProductController extends Controller
         foreach ($product->subCategory as $subCate){
             foreach ($subCate->product as $pro){
                 $productsSame->push($pro);
-            } 
+            }
         }
         // dd($productsSame);
         $categories = Category::all();

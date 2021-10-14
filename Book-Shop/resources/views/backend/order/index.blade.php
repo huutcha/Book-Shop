@@ -1,13 +1,14 @@
 @extends('backend.layouts.table')
 @section('title')
-Admin | Danh sách đơn hàng
+Danh sách đơn hàng
 @endsection
 
 @section('page-title')
 Danh sách đơn hàng
 @endsection
 
-@section('table')
+@section('content')
+<table style="width: 100%">
 <thead>
     <tr>
         <th>Mã đơn hàng</th>
@@ -39,4 +40,5 @@ Danh sách đơn hàng
     </tr>
     @endforeach
 </tbody>
+</table>
 @endsection

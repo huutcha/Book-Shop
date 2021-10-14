@@ -27,7 +27,7 @@ class Sub_CategoryController extends Controller
     }
 
     public function store(Request $request)
-    {   
+    {
         $request->validate([
             'name' => 'required',
             'category_id' => 'required'
@@ -37,7 +37,7 @@ class Sub_CategoryController extends Controller
     }
 
     public function edit(SubCategory $sub_category)
-    {   
+    {
         $categories = Category::all();
         return view('backend.sub_category.edit', compact('sub_category'), compact('categories'));
     }

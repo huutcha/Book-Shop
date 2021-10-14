@@ -1,4 +1,4 @@
-@extends('backend.layouts.main')
+@extends('backend.layouts.table')
 
 @section('title')
 Admin | Chi tiết đơn hàng
@@ -66,7 +66,7 @@ Chi tiết đơn hàng
                     </table>
                 </div>
             </div>
-            
+
             <div class="col-md-12">
                 <div class="pull-right mt-4 text-end">
                     <p>Tổng giá: {{$total}} VNĐ</p>
@@ -87,7 +87,7 @@ Chi tiết đơn hàng
                     @else
                         <a href="{{url('admin/orders')}}" class="btn btn-secondary">Trở về</a>
                     @endif
-                    
+
                 </div>
             </div>
         </div>

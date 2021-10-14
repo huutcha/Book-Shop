@@ -10,16 +10,16 @@ use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
-    
+
 
     public function index()
-    {   
+    {
         if (Auth::user()->role == 'Admin'){
             $users = User::where(['role' => '3'])->get();
         } else {
             $users = User::all();
         }
-        
+
         return view('backend.user.index', compact('users'));
     }
 
@@ -36,7 +36,7 @@ class UserController extends Controller
             'role' => 'required',
             'point' => 'required|numeric'
         ]);
-        
+
         $user = User::create($request->input());
         UsersInformation::create(['user_id' => $user->id]);
         return redirect('admin/users/'.$user->id.'/information');
@@ -48,7 +48,7 @@ class UserController extends Controller
     }
 
     public function update(Request $request, User $user)
-    {   
+    {
         $request->validate([
             'point' => 'required|numeric'
         ]);

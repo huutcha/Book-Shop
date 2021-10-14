@@ -37,17 +37,18 @@ Route::group(['prefix' => 'admin'],function (){
 
         Route::post('/avatar/{id}', [UserInformationController::class, 'updateAvatar']);
 
-        
-        Route::resource('users', UserController::class);
+
+        // Route::resource('users', UserController::class);
         Route::get('/users/{id}/information', [UserInformationController::class, 'createProfile']);
         Route::put('/users/{id}/information', [UserInformationController::class, 'storeProfile']);
-        
+
         Route::resource('categories', CategoryController::class);
         Route::resource('sub_categories', Sub_CategoryController::class);
 
         Route::resource('promotions', PromotionController::class);
 
         Route::resource('products', ProductController::class);
+        // Route::resource('orders', OrderController::class);
 
         Route::get('/orders', [OrderController::class, 'index']);
         Route::get('/orders/{id}', [OrderController::class, 'show']);
