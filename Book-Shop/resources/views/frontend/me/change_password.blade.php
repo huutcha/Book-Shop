@@ -1,6 +1,6 @@
 @extends('frontend.me.main')
 @section('title')
-Admin | Đổi mật khẩu
+Đổi mật khẩu
 @endsection
 @section('page-title')
 Đổi mật khẩu
@@ -12,7 +12,7 @@ Admin | Đổi mật khẩu
             @if (Session::has('errors'))
             <h5 class="text-danger">{{Session::get('errors')}}</h5>
             @endif
-            <form action="{{ url('admin/changepassword')}}" class="form-horizontal form-material" method="post">
+            <form action="{{ url('/changepassword')}}" class="form-horizontal form-material" method="post">
                 @csrf
                 @method('PUT')
                 <div class="form-group">

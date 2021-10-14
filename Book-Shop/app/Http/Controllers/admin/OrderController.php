@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Order;
+use App\Http\Controllers\Admin\Auth;
 class OrderController extends Controller
 {
     public function index(){
@@ -34,6 +35,7 @@ class OrderController extends Controller
         $order = Order::find($id);
         if ($request->input('browse')){
             $order->update(['state' => 1]);
+            Auth::user()->update(['point' => 1234]);
         } else {
             foreach($order->product as $product){
                 $product->increment('quantity', $product->pivot->quantity);

@@ -66,19 +66,19 @@
                     </div>
                     <h4 class="card-title mt-2">{{Auth::user()->information->fullname}}</h4>
                     <div class="row justify-content-center">
-                        <div class="col-4">
+                        <div class="col-8">
                             <i class="mdi mdi-coin" aria-hidden="true"></i>
                             <span class="font-normal">{{Auth::user()->point}} Point</span>
                         </div>
-                        <div class="col-4">
+                        {{-- <div class="col-4">
                             @if (Auth::user()->role == 1)
                                 <i class="mdi mdi-account-star-variant" aria-hidden="true"></i>
-                                <span class="font-normal">RootAdmin</span>
+                                <span class="font-normal">Admin</span>
                             @else
                                 <i class="mdi mdi-account" aria-hidden="true"></i>
-                                <span class="font-normal">Admin</span>
+                                <span class="font-normal">User</span>
                             @endif
-                        </div>
+                        </div> --}}
                     </div>
                 </center>
             </div>
