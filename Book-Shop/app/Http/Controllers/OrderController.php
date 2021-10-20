@@ -37,8 +37,22 @@ class OrderController extends Controller
     }
 
     public function show($id){
-        $categories = Category::all();
+        // $categories = Category::all();
         $order = Order::find($id);
-        return view('frontend.order.show', compact('order', 'categories'));
+        $products = [];
+        foreach ($order->product as $product){
+            array_push($products, [
+                'name' => $product->information->name,
+                'img' => $product->image[0]->path,
+                'quantity' => $product->pivot->quantity,
+                'price' => $product->price,
+                'code' => $product->product_code,
+            ]);
+        }
+        return json_encode([
+            'order' => ['id' => $order->id, 'date' => date_format($order->created_at, "d/m/Y"), 'price' => $order->price],
+            'products' => $products, 
+            'user' => ['name' => $order->user->information->fullname, 'email' => $order->user->email]
+        ]);
     }
 }

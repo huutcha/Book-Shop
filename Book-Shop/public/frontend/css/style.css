@@ -79,9 +79,8 @@ ul.support li a {
 	display: flex;
 	flex-direction: row-reverse;
 }
-.account,.cart{
-	/* float:left; */
-	/* width:40%; */
+.account {
+	position: relative;
 }
 .content{
 	padding: 8px 10px;
@@ -92,7 +91,7 @@ ul.support li a {
 	position: relative;
 }
 .account a span{
-	background: url(../images/img-sprite.png)-117px -30px;
+	/* background: url(../images/img-sprite.png)-117px -30px; */
 	width: 26px;
 	height: 26px;
 	display: inline-block;
@@ -103,7 +102,7 @@ ul.support li a {
 	font-size: 1em;
 	color: #000;
 }
-.cart:hover .cart-container{
+.cart:hover .cart-container, .account:hover .cart-container{
 	display: block;
 }
 
@@ -120,6 +119,18 @@ ul.support li a {
 	z-index: 99;
 }
 .cart-container{
+	display: none;
+	position: absolute;
+	top: 100%;
+	right: 0;
+	width: 360px;
+	max-height: 400px;
+	background-color: #ddd;
+	box-shadow: 2px 4px 4px #989CA2;
+	transition: .5s;
+	z-index: 99;
+}
+.account-container{
 	display: none;
 	position: absolute;
 	top: 100%;
@@ -785,7 +796,7 @@ p.m_text {
 
 /*--product--*/
 /*-- start w_content --*/
-.women-product,.main{
+.women-product{
 	width: 70%;
 	float: right;
 }

@@ -148,8 +148,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 <p>Giỏ hàng trống</p>`
                     }
                     $('#cart-list-item').html(html);
-                    $('.badge').html($('#cart-list-item').children('li').length)
-                    $('.badge').show();
+                    $('#cart-quantity').html($('#cart-list-item').children('li').length)
+                    $('#cart-quantity').show();
                     $('#cart-data').html(html1);
                     $('#total-price').html(res.data.totalPrice)
                 })

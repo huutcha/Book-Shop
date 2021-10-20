@@ -43,6 +43,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script src="{{asset('frontend/js/jquery.min.js')}}"></script>
     <script src="{{asset('assets/libs/bootstrap/dist/js/bootstrap.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.22.0/axios.min.js" integrity="sha512-m2ssMAtdCEYGWXQ8hXVG4Q39uKYtbfaJL5QMTbhl2kc6vYyubrKHhr6aLLXW4ITeXSywQLn1AhsAaqrJl8Acfg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     @stack('link-js')
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!-- Code injected by live-server -->
@@ -138,8 +139,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 </tr>`
                     })
                     $('#cart-list-item').html(html);
-                    $('.badge').html($('#cart-list-item').children().length)
-                    $('.badge').show();
+                    $('#cart-quantity').html($('#cart-list-item').children().length)
+                    $('#cart-quantity').show();
                     $('#cart-data').html(html1);
                     $('#total-price').html(res.data.totalPrice)
                 })

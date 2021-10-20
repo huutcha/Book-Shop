@@ -26,7 +26,7 @@ use App\Http\Controllers\SearchController;
 */
 
 Route::get('/', [ProductController::class, 'home']);
-Route::get('/orders', [OrderController::class, 'index']);
+
 // Route::get('/users', [UserController::class, 'index']);
 
 Route::get('/category/{category_id}/sub_category/{subcategory_id}/products', [ProductController::class, 'shop']);
@@ -38,12 +38,7 @@ Route::get('/register', [AuthenticateController::class, 'showRegister']);
 Route::post('/register', [AuthenticateController::class, 'register']);
 
 
-Route::get('/profile',[UserInformationController::class, 'showProfile']);
-Route::put('/profile',[UserInformationController::class, 'updateProfile']);
-Route::get('/changepassword', [AuthenticateController::class, 'changePassword']);
-Route::put('/changepassword', [AuthenticateController::class, 'updatePassword']);
 
-Route::get('/logout', [AuthenticateController::class, 'logout']);
 Route::get('/contact', [ServiceController::class, 'showContact']);
 Route::get('/security', [ServiceController::class, 'showSecurity']);
 Route::get('terms', [ServiceController::class, 'showTerms']);
@@ -68,6 +63,12 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('/comment', [CommentController::class, 'create']);
     Route::put('/comment/{id}', [CommentController::class, 'update']);
     Route::delete('/comment/{id}', [CommentController::class, 'delete']);
+
+    Route::get('/profile',[UserInformationController::class, 'showProfile']);
+    Route::put('/profile',[UserInformationController::class, 'updateProfile']);
+    Route::put('/changepassword', [AuthenticateController::class, 'updatePassword']);
+
+    Route::get('/logout', [AuthenticateController::class, 'logout']);
 });
 
 Route::get('/search', [SearchController::class, 'search']);

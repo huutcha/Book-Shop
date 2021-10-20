@@ -14,8 +14,8 @@ class UserInformationController extends Controller
 {
 
     public function showProfile() {
-        $categories = Category::all();
-        return view('frontend.me.profile', compact('categories'));
+        $orders =  Auth::user()->order;
+        return view('frontend.me.main', compact('orders'));
     }
 
     // public function editProfile() {

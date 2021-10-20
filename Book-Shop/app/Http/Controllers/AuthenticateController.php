@@ -67,14 +67,12 @@ class AuthenticateController extends Controller
         if(Hash::check($request->input('old_pass'),  Auth::user()->password )){
             if ($request->input('new_pass') == $request->input('re_new_pass')) {
                 Auth::user()->update(['password' => $request->input('new_pass')]);
-                return redirect('/profile');
+                return json_encode(['state' => 1]);
             } else {
-                $request->session()->flash('errors', 'Nhập lại mật khẩu không chính xác');
-                return redirect('/admin/changepassword');
+                return json_encode(['state' => 0, 'error' => 'Nhập lại mật khẩu không chính xác']);
             }
         } else {
-            $request->session()->flash('errors', 'Mật khẩu cũ không chính xác');
-            return redirect('/changepassword');
+            return json_encode(['state' => 0, 'error' => 'Mật khẩu cũ không chính xác']);
         }
     }
 }
