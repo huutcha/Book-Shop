@@ -34,7 +34,10 @@ class CartController extends Controller
                 'totalPrice' => Session::get('myCart')->totalPrice()
             ]);
         } else {
-            dd('Cart trống');
+            return json_encode([
+                'cart' => [],
+                'totalPrice' => 0
+            ]);
         }
     }
 
