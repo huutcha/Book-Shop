@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Order;
-use App\Http\Controllers\Admin\Auth;
+use Illuminate\Support\Facades\Auth;
 class OrderController extends Controller
 {
     public function index(){
@@ -48,6 +48,6 @@ class OrderController extends Controller
     public function destroy($id){
         $order = Order::find($id);
         $order->delete();
-        return redirect('orders');
+        return redirect('admin/orders');
     }
 }
