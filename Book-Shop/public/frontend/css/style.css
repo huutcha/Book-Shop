@@ -557,6 +557,13 @@ a.view-all{
 a.all-product{
 	float:left;
 }
+.logout{
+	color: white;
+	text-decoration: none;
+}
+.logout:hover{
+	color: white;
+}
 h5.latest-product{
 	margin: 6px 0 0;
 	font-size: 1.3em;

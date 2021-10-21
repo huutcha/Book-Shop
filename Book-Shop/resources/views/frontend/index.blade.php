@@ -2,11 +2,17 @@
 @section('title')
     Trang chủ
 @endsection
+@push('link-css')
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+@endpush
 @push('css')
     <style>
         .carousel-control-prev, .carousel-control-next{
             background: transparent;
             border: none;
+        }
+        .swiper-slide img{
+            width: 100%;
         }
     </style>
 @endpush
@@ -135,7 +141,51 @@
         @endforeach
     </div>
 </div>
+<div class="content mt-5">
+    <!-- Swiper -->
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+              <img src="{{asset('frontend/images/macgrawhill.jpg')}}" alt="">
+          </div>
+          <div class="swiper-slide">
+              <img src="{{asset('frontend/images/macmillan.jpg')}}" alt="">
+          </div>
+          <div class="swiper-slide">
+              <img src="{{asset('frontend/images/oxford.jpg')}}" alt="">
+          </div>
+          <div class="swiper-slide">
+              <img src="{{asset('frontend/images/paragon.jpg')}}" alt="">
+          </div>
+          <div class="swiper-slide">
+              <img src="{{asset('frontend/images/penguin.jpg')}}" alt="">
+          </div>
+          <div class="swiper-slide">
+              <img src="{{asset('frontend/images/sterling.jpg')}}" alt="">
+          </div>
+          <div class="swiper-slide">
+              <img src="{{asset('frontend/images/usborn.jpg')}}" alt="">
+          </div>
+          <div class="swiper-slide">
+              <img src="{{asset('frontend/images/Harper-Collins.jpg')}}" alt="">
+          </div>
+          <div class="swiper-slide">
+              <img src="{{asset('frontend/images/hachette.jpg')}}" alt="">
+          </div>
+          <div class="swiper-slide">
+              <img src="{{asset('frontend/images/cengage.jpg')}}" alt="">
+          </div>
+          <div class="swiper-slide">
+              <img src="{{asset('frontend/images/cambridge.jpg')}}" alt="">
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+</div>
 @endsection
+@push('link-js')
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+@endpush
 @push('js')
 <script>
         $('.add-cart').click(function(){
@@ -152,5 +202,14 @@
                 console.log(error);
             });
         })
+
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 7,
+            spaceBetween: 20,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+        });
 </script>
 @endpush

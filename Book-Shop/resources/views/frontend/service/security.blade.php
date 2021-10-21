@@ -4,9 +4,7 @@
 @endsection
 @section('content')
 
-<div class="container">
-		
-    <!---->
+
  <div class="main"> 
  <div class="reservation_top">          
         <div class=" contact_right">

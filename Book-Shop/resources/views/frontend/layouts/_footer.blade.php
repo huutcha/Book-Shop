@@ -57,15 +57,13 @@
                 </ul>
             </div>
             <div class="footer-bottom-cate cate-bottom">
-                <h6>OUR ADDERSS</h6>
-                <ul>
-                    <li>Aliquam metus  dui. </li>
-                    <li>orci, ornareidquet</li>
-                    <li> ut,DUI.</li>
-                    <li >nisi, dignissim</li>
-                    <li >gravida at.</li>
-                    <li class="phone">PH : 6985792466</li>
-                    <li class="temp"> <p class="footer-class">Design by <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p></li>
+                <h6>ĐỊA CHỈ CỬA HÀNG</h6>
+                <ul >
+                    <li style="color: #555">Số 10, Châu Đài </li>
+                    <li style="color: #555">Thượng Cát, Bắc Từ Liêm, Hà Nội</li>
+                    <li style="color: #555">Email: bookshop.gmail.com</li>
+                    <li class="phone">SĐT : 6985792466</li>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14890.065222304365!2d105.7394015714619!3d21.091972536490353!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1svi!2s!4v1634828177417!5m2!1svi!2s" width="300" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                 </ul>
             </div>
             <div class="clearfix"> </div>
