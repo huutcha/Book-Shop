@@ -1,6 +1,6 @@
 @extends('backend.layouts.table')
 @section('title')
-Admin | Danh sách đơn hàng
+Danh sách đơn hàng
 @endsection
 
 @section('page-title')
@@ -22,10 +22,20 @@ Danh sách đơn hàng
     @foreach ($orders as $order)
     <tr>
         <td>{{$order->id}}</td>
-        <td>{{$order->date}}</td>
+        <td>{{$order->created_at}}</td>
         <td>{{$order->user->email}}</td>
-        <td>{{$order->state_char}}</td>
-        <td>{{$order->price}}</td>
+        <td>
+            @if ($order->state == 1)
+                <span class="badge bg-success">Đã duyệt</span>
+            @endif
+            @if ($order->state == 0)
+                <span class="badge bg-warning">Chưa duyệt</span>
+            @endif
+            @if ($order->state == 2)
+                <span class="badge bg-danger">Hủy bỏ</span>
+            @endif
+        </td>
+        <td>{{$order->price}} VNĐ</td>
         <td>
             <a class="btn btn-primary" href="{{ url('admin/orders/'.$order->id)}}">Xem chi tiết</a>
             @if ($order->state == 1 || $order->state == 2)

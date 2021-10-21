@@ -1,5 +1,10 @@
-@extends('backend.layouts.main')
-
+@extends('backend.layouts.table')
+@section('title')
+    Admin | Sửa danh mục
+@endsection
+@section('page-title')
+    Sửa danh mục
+@endsection
 @section('content')
     <div class="container">
         <form method="POST" action="{{url('admin/categories/'.$category->id)}}">
@@ -12,7 +17,7 @@
                     <div class="invalid-feedback">{{$message}}</div>
                 @enderror
             </div>
-            <button type="submit">Submit</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 @endsection

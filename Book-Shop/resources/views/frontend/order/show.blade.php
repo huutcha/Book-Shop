@@ -1,7 +1,7 @@
-@extends('backend.layouts.table')
+@extends('frontend.layouts.main')
 
 @section('title')
-Admin | Chi tiết đơn hàng
+Chi tiết đơn hàng
 @endsection
 
 @section('page-title')
@@ -76,7 +76,7 @@ Chi tiết đơn hàng
                 </div>
                 <div class="clearfix"></div>
                 <hr />
-                <div class="text-end">
+                {{-- <div class="text-end">
                     @if ($order->state == 0)
                         <form action="{{url('admin/orders/'.$order->id)}}" method="post">
                             @csrf
@@ -88,7 +88,7 @@ Chi tiết đơn hàng
                         <a href="{{url('admin/orders')}}" class="btn btn-secondary">Trở về</a>
                     @endif
 
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

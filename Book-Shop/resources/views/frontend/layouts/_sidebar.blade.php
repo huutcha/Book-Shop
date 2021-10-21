@@ -11,7 +11,7 @@
                         <li class="subitem1">
                             @if (isset($subcategory_id))
                             <a href="{{url('category/'.$category->id.'/'.'sub_category/'.$subcate->id.'/products')}}" class="{{$subcate->id == $subcategory_id ? 'active' : ''}}">{{$subcate->name}} </a>
-                                
+
                             @else
                             <a href="{{url('category/'.$category->id.'/'.'sub_category/'.$subcate->id.'/products')}}">{{$subcate->name}} </a>
                             @endif

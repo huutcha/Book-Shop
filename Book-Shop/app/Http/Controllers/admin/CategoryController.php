@@ -43,13 +43,13 @@ class CategoryController extends Controller
             'name' => 'required'
         ]);
         $category->update($request->input());
-        return redirect('categories');
+        return redirect('admin/categories');
     }
 
     public function destroy(Category $category)
     {
         $category->delete();
-        return redirect('categories');
+        return redirect('admin/categories');
     }
 }
 

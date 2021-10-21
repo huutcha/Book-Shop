@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Storage;
 class ProductController extends Controller
 {
     //
+    public function home()
+    {
+        $categories = Category::all();
+        return view('frontend.product.home', compact('categories'));
+    }
     public function index()
     {
         $products = Product::all();
@@ -32,8 +37,8 @@ class ProductController extends Controller
     }
 
     public function store(Request $request)
-    {   
-        
+    {
+
         $request->validate([
             'name' => 'required',
             'product_code' => 'required',
@@ -45,10 +50,10 @@ class ProductController extends Controller
         ]);
         $files = $request->file('path');
         $product = Product::create($request->input());
-        
+
         ProductInformation::create(['product_id' => $product->id]);
         $product->information->update($request->input());
-        
+
         foreach ($request->input('sub_category_id') as $cateId){
             $product->subCategory()->attach($cateId);
         }
@@ -60,24 +65,24 @@ class ProductController extends Controller
                 'product_id' => $product->id
             ]);
         }
-        
+
         return redirect('admin/products');
     }
 
     public function edit(Product $product)
-    {   
+    {
         $promotions = Promotion::all();
         $categories = Category::all();
         $subCateIds = [];
         foreach ($product->subCategory as $subCategory){
             array_push($subCateIds, $subCategory->id);
         }
-        
+
         return view('backend.product.edit', compact('product', 'promotions', 'categories', 'subCateIds'));
     }
 
     public function update(Request $request, Product $product)
-    {   
+    {
         $request->validate([
             'name' => 'required',
             'product_code' => 'required',
@@ -107,7 +112,7 @@ class ProductController extends Controller
                 ]);
             }
         }
-        
+
 
         return redirect('admin/products');
     }

@@ -43,6 +43,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script src="{{asset('frontend/js/jquery.min.js')}}"></script>
     <script src="{{asset('assets/libs/bootstrap/dist/js/bootstrap.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.22.0/axios.min.js" integrity="sha512-m2ssMAtdCEYGWXQ8hXVG4Q39uKYtbfaJL5QMTbhl2kc6vYyubrKHhr6aLLXW4ITeXSywQLn1AhsAaqrJl8Acfg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     @stack('link-js')
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!-- Code injected by live-server -->
@@ -105,41 +106,48 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         function loadCart (){
             axios.get('/getCart')
                 .then(function(res){
-                    console.log(res.data)
                     var html = ''
                     var html1 = ''
-                    res.data.cart.forEach(function(item){
-                        // console.log(item);
-                        html += `<li class="cart-item">
-                                        <img src="{{asset('storage/products/${item.img}')}}" alt="">
-                                        <div class="item-name">
-                                            ${item.name}
-                                        </div>
-                                        <div class="quantity-price">
-                                            <div class="quantity">
-                                                <label for="">Số lượng: </label>
-                                                <input type="number" name="quantity" data-id="${item.id}" value="${item.quantity}" class="cart-top-quantity">
+                    if(res.data.cart.length){
+                        res.data.cart.forEach(function(item){
+                            // console.log(item);
+                            html += `<li class="cart-item">
+                                            <img src="{{asset('storage/products/${item.img}')}}" alt="">
+                                            <div class="item-name">
+                                                ${item.name}
                                             </div>
-                                            <span class="price">${item.price * item.quantity} VNĐ</span>
-                                        </div>
-                                        <div class="remove" data-id="${item.id}">x</div>
-                                    </li>`
-                        html1 += `<tr class="cart-table-item">
-                                    <td><button data-id="${item.id}" class="btn btn-danger table-cart-remove">x</button></td>
-                                    <td class="table-item-name">
-                                        <img src="{{asset('storage/products/${item.img}')}}" alt="">
-                                        <p>${item.name}</p>
-                                    </td>
-                                    <td>
-                                        <input type="number" name="quantity" data-id="${item.id}" class="cart-quantity" value="${item.quantity}" min="1">
-                                    </td>
-                                    <td>${item.price} VNĐ</td>
-                                    <td>${item.price * item.quantity} VNĐ</td>
+                                            <div class="quantity-price">
+                                                <div class="quantity">
+                                                    <label for="">Số lượng: </label>
+                                                    <input type="number" name="quantity" data-id="${item.id}" value="${item.quantity}" class="cart-top-quantity">
+                                                </div>
+                                                <span class="price">${item.price * item.quantity} VNĐ</span>
+                                            </div>
+                                            <div class="remove" data-id="${item.id}">x</div>
+                                        </li>`
+                            html1 += `<tr class="cart-table-item">
+                                        <td><button data-id="${item.id}" class="btn btn-danger table-cart-remove">x</button></td>
+                                        <td class="table-item-name">
+                                            <img src="{{asset('storage/products/${item.img}')}}" alt="">
+                                            <p>${item.name}</p>
+                                        </td>
+                                        <td>
+                                            <input type="number" name="quantity" data-id="${item.id}" class="cart-quantity" value="${item.quantity}" min="1">
+                                        </td>
+                                        <td>${item.price} VNĐ</td>
+                                        <td>${item.price * item.quantity} VNĐ</td>
+                                    </tr>`
+                        })
+                    } else {
+                        html1 = `<tr>
+                                    <td colspan="5"><p class="text-center">Giỏ hàng trống. <a href="{{url('/')}}">Mua hàng ngay.</a></p></td>
                                 </tr>`
-                    })
+                        html = `<img src="{{asset('frontend/images/nothing.png')}}" alt="" width="100px">
+                                <p>Giỏ hàng trống</p>`
+                    }
                     $('#cart-list-item').html(html);
-                    $('.badge').html($('#cart-list-item').children().length)
-                    $('.badge').show();
+                    $('#cart-quantity').html($('#cart-list-item').children('li').length)
+                    $('#cart-quantity').show();
                     $('#cart-data').html(html1);
                     $('#total-price').html(res.data.totalPrice)
                 })
@@ -169,6 +177,43 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 .catch(function(res){
                     console.log(res);
                 })
+        })
+    </script>
+    <script>
+        $('#search-btn').click(function(){
+            if (window.localStorage.getItem('history')){
+                var history = JSON.parse(window.localStorage.getItem('history'))
+                if (!history.includes($(this).siblings('#search-content').val())) {
+                    history.unshift($(this).siblings('#search-content').val())
+                    window.localStorage.setItem('history', JSON.stringify(history))
+                }
+            } else {
+                var history = [$(this).siblings('#search-content').val()]
+                window.localStorage.setItem('history', JSON.stringify(history))
+            }
+
+        })
+        function loadHistory(){
+            if (window.localStorage.getItem('history')){
+                var history = JSON.parse(window.localStorage.getItem('history'))
+                var html = ""
+                history.forEach(function(item){
+                    html += `<li class="search-list-item">
+                                <i class="fas fa-history"></i>
+                                <a href="search?search=${item}">${item}</a>
+                            </li>`
+                })
+                $('.search-list').html(html)
+            } else {
+                $('.search-list').html('Lịch sử trống')
+            }
+        }
+        loadHistory();
+        $('.search').blur(function(e){
+            $(this).find('.search-list').hide();
+        })
+        $('.search').click(function(){
+            $(this).find('.search-list').show();
         })
     </script>
     @stack('js')

@@ -13,7 +13,7 @@ class CreateCodesSaleTable extends Migration
      */
     public function up()
     {
-        Schema::create('codes_sale', function (Blueprint $table) {
+        Schema::create('codes_sales', function (Blueprint $table) {
             $table->id();
             $table->string('code');
             $table->boolean('actived');
@@ -28,6 +28,6 @@ class CreateCodesSaleTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('codes_sale');
+        Schema::dropIfExists('codes_sales');
     }
 }

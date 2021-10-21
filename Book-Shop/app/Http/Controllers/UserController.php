@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\UsersInformation;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Category;
 
 class UserController extends Controller
 {
@@ -14,18 +15,20 @@ class UserController extends Controller
 
     public function index()
     {
+        $categories = Category::all();
         if (Auth::user()->role == 'Admin'){
             $users = User::where(['role' => '3'])->get();
         } else {
             $users = User::all();
         }
 
-        return view('backend.user.index', compact('users'));
+        return view('frontend.user.index', compact('users' , 'categories'));
     }
 
     public function create()
     {
-        return view('backend.user.create');
+        $categories = Category::all();
+        return view('frontend.user.create', compact('categories'));
     }
 
     public function store(Request $request)
@@ -39,12 +42,12 @@ class UserController extends Controller
 
         $user = User::create($request->input());
         UsersInformation::create(['user_id' => $user->id]);
-        return redirect('admin/users/'.$user->id.'/information');
+        return redirect('users/'.$user->id.'/information');
     }
 
     public function edit(User $user)
     {
-        return view('backend.user.edit', compact('user'));
+        return view('frontend.user.edit', compact('user'));
     }
 
     public function update(Request $request, User $user)
@@ -72,12 +75,12 @@ class UserController extends Controller
         }
 
         $user->information->update($request->input());
-        return redirect('admin/users');
+        return redirect('users');
     }
 
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect('admin/users');
+        return redirect('users');
     }
 }

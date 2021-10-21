@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\UsersInformation;
 use App\Models\Category;
+use Illuminate\Support\Facades\Hash;
+
 class AuthenticateController extends Controller
 {
     public function showLogin (){
@@ -49,4 +51,30 @@ class AuthenticateController extends Controller
         $user->information->update($request->input());
         return redirect('/login');
     }
+
+    public function logout() {
+        Auth::logout();
+        return redirect('/login');
+    }
+
+    public function changePassword() {
+        $categories = Category::all();
+        return view('frontend.me.change_password', compact('categories'));
+    }
+
+    public function updatePassword(Request $request) {
+
+        if(Hash::check($request->input('old_pass'),  Auth::user()->password )){
+            if ($request->input('new_pass') == $request->input('re_new_pass')) {
+                Auth::user()->update(['password' => $request->input('new_pass')]);
+                return json_encode(['state' => 1]);
+            } else {
+                return json_encode(['state' => 0, 'error' => 'Nhập lại mật khẩu không chính xác']);
+            }
+        } else {
+            return json_encode(['state' => 0, 'error' => 'Mật khẩu cũ không chính xác']);
+        }
+    }
 }
+
+

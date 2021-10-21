@@ -1,4 +1,4 @@
-<!--A Design by W3layouts 
+<!--A Design by W3layouts
 Author: W3layout
 Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
@@ -21,10 +21,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     @stack('link-css')
     <!--theme-style-->
-    <link href="{{asset('frontend/css/style.css')}}" rel="stylesheet" type="text/css" media="all" />	
+    <link href="{{asset('frontend/css/style.css')}}" rel="stylesheet" type="text/css" media="all" />
     <!--//theme-style-->
     @stack('css')
-    
+
 </head>
 <body>
     @include('frontend.layouts._header')
@@ -41,10 +41,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     </div>
     @include('frontend.layouts._footer')
 
-
     <script src="{{asset('frontend/js/jquery.min.js')}}"></script>
     <script src="{{asset('assets/libs/bootstrap/dist/js/bootstrap.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.22.0/axios.min.js" integrity="sha512-m2ssMAtdCEYGWXQ8hXVG4Q39uKYtbfaJL5QMTbhl2kc6vYyubrKHhr6aLLXW4ITeXSywQLn1AhsAaqrJl8Acfg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     @stack('link-js')
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
@@ -148,8 +148,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                 <p>Giỏ hàng trống</p>`
                     }
                     $('#cart-list-item').html(html);
-                    $('.badge').html($('#cart-list-item').children('li').length)
-                    $('.badge').show();
+                    $('#cart-quantity').html($('#cart-list-item').children('li').length)
+                    $('#cart-quantity').show();
                     $('#cart-data').html(html1);
                     $('#total-price').html(res.data.totalPrice)
                 })

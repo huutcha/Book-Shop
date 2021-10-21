@@ -14,7 +14,7 @@
                 <div class="clearfix"> </div>
             </div>
             <div class="top-header-right">
-                <div class="down-top">		
+                <div class="down-top">
                       <select class="in-drop">
                           <option value="English" class="in-of">English</option>
                           <option value="Japanese" class="in-of">Japanese</option>
@@ -23,16 +23,11 @@
                         </select>
                  </div>
                 <div class="down-top top-down">
-                      <select class="in-drop">
-                      
-                      <option value="Dollar" class="in-of">Dollar</option>
-                      <option value="Yen" class="in-of">Yen</option>
-                      <option value="Euro" class="in-of">Euro</option>
-                        </select>
+                      <a href="{{url('/logout')}}" >ĐĂNG XUẤT</a>
                  </div>
-                <div class="clearfix"> </div>	
+                <div class="clearfix"> </div>
             </div>
-            <div class="clearfix"> </div>		
+            <div class="clearfix"> </div>
         </div>
     </div>
     <div class="bottom-header">
@@ -54,19 +49,25 @@
                         <a href="{{url('/cart')}}" class="position-relative">
                             <span><i class="fa-solid fa-cart-shopping"></i></span>
                             CART
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="display:none">
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-quantity" style="display:none">
                             </span>
                         </a>
-                        
                         <div class="cart-container">
                             <ul id="cart-list-item">
-                                
+
                             </ul>
                             <a class="link-cart" href="{{url('/cart')}}">XEM GIỎ HÀNG</a>
                         </div>
                     </div>
+
                     @if (Auth::check())
-                        <div class="account"><a href="login.html"><span><i class="fa-solid fa-user"></i> </span>YOUR ACCOUNT</a></div>
+                    <div class="account">
+                        <a href="{{url('/profile')}}" class="position-relative">
+                            <span><i class="fa-solid fa-user"></i></span>
+                            {{Auth::user()->information->fullname}}
+                        </a>
+                    </div>
+                        {{-- <div class="account"><a href="#"><span><i class="fa-solid fa-user"></i> </span>{{Auth::user()->information->fullname}}</a></div> --}}
                     @else
                     <ul class="login">
                         <li><a href="{{url('/login')}}"><span><i class="fa-solid fa-lock"></i></span>ĐĂNG NHẬP</a></li> |
@@ -74,7 +75,7 @@
                     </ul>
                     @endif
                 <div class="clearfix"> </div>
-            </div>
+                </div>
             </div>
         </div>
     </div>
