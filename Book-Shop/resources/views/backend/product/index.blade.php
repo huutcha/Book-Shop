@@ -13,7 +13,7 @@ Danh sách sản phẩm
     <thead>
         <tr>
             <th>Mã sản phẩm</th>
-            <th style="max-width: 450px">Tên sản phẩm</th>
+            <th style="max-width: 400px">Tên sản phẩm</th>
             <th>Số lượng hàng</th>
             <th>Giá</th>
             {{-- <th>Chương trình khuyến mãi</th> --}}
@@ -31,11 +31,11 @@ Danh sách sản phẩm
                 <td>{{$product->quantity}}</td>
                 @if ($product->price_sale)
                     <td>
-                        <span class="text-success">{{$product->price_sale}}</span>
-                        <span style="text-decoration-line: line-through">{{$product->price}}</span>
+                        <span class="text-success">{{$product->price_sale_format}} đ</span>
+                        <span style="text-decoration-line: line-through">{{$product->price_format}} đ</span>
                     </td>
                 @else
-                    <td>{{$product->price}}</td>
+                    <td>{{$product->price_format}} đ</td>
                 @endif
                 <td>
                     <a class="btn btn-primary" href="{{ url('admin/products/'.$product->id.'/edit')}}">Edit</a>

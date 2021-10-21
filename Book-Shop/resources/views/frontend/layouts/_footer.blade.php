@@ -2,7 +2,7 @@
     <div class="footer-top">
         <div class="container">
             <div class="latter">
-                <h6>ĐĂNG KÍ NHẬN BẢN TIN</h6>
+                <h6>ĐĂNG KÍ NHẬN TIN</h6>
                 <div class="sub-left-right">
                     <form>
                         <input type="text" value="Enter email here"onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter email here';}" />
@@ -26,20 +26,16 @@
     <div class="footer-bottom">
         <div class="container">
             <div class="footer-bottom-cate">
-                <h6>CATEGORIES</h6>
+                <h6>DANH MỤC</h6>
                 <ul>
-                    <li><a href="#">Curabitur sapien</a></li>
-                    <li><a href="#">Dignissim purus</a></li>
-                    <li><a href="#">Tempus pretium</a></li>
-                    <li ><a href="#">Dignissim neque</a></li>
-                    <li ><a href="#">Ornared id aliquet</a></li>
-                    <li><a href="#">Ultrices id du</a></li>
-                    <li><a href="#">Commodo sit</a></li>
-                    <li ><a href="#">Urna ac tortor sc</a></li>
-                    <li><a href="#">Ornared id aliquet</a></li>
-                    <li><a href="#">Urna ac tortor sc</a></li>
-                    <li ><a href="#">Eget nisi laoreet</a></li>
-                    <li ><a href="#">Faciisis ornare</a></li>
+                    @foreach ($categories as $category)
+                        <li>
+                            <div><strong style="color: #555">{{$category->name}}</strong> </div>
+                            @foreach ($category->subCategory as $subCate)
+                                <a href="{{url('category/'.$category->id.'/'.'sub_category/'.$subCate->id.'/products')}}" class="mx-2 d-block">{{$subCate->name}} </a>
+                            @endforeach
+                        </li>
+                    @endforeach
                 </ul>
             </div>
             <div class="footer-bottom-cate bottom-grid-cat">
@@ -49,17 +45,15 @@
                     <li><a href="{{url('/terms')}}">Điều khoản sử dụng</a></li>
                     <li><a href="{{url('/security')}}">Chính sách bảo mật</a></li>
                     <li><a href="{{url('/introduce')}}">Giới thiệu Book - Shop</a></li>
-                    <li ><a href="#">Ornared id aliquet</a></li>
                 </ul>
             </div>
             <div class="footer-bottom-cate">
-                <h6>Hỗ trợ</h6>
+                <h6>HỖ TRỢ</h6>
                 <ul>
                     <li><a href="{{url('/change')}}">Chính sách đổi - trả - hoàn tiền</a></li>
                     <li><a href="{{url('/buys')}}">Chính sách khách sỉ</a></li>
                     <li><a href="{{url('/transport')}}">Phương thức vận chuyển</a></li>
                     <li><a href="#">Phương thức thanh toán và xuất HĐ</a></li>
-                    <li ><a href="#">Ornared id aliquet</a></li>
                 </ul>
             </div>
             <div class="footer-bottom-cate cate-bottom">

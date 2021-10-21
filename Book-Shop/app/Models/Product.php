@@ -56,12 +56,32 @@ class Product extends Model
         
     }
 
-    static function getSellingProducts(){
-        return static::join('order_product', 'products.id', '=', 'order_product.product_id')
-                    ->join('orders', 'orders.id', '=', 'order_product.order_id')
-                    ->select(DB::raw('products.id ,SUM(order_product.quantity) as sold'))
-                    ->where('orders.state', '=', 1)
-                    ->groupBy('products.id')
-                    ->orderBy('sold', 'desc')->limit(5)->get();
+    public function getPriceFormatAttribute (){
+        return number_format($this->price, 0, ",", ".");
     }
+
+    public function getPriceSaleFormatAttribute (){
+        return number_format($this->price_sale, 0, ",", ".");
+    }
+
+    static function getSellingProducts($limit){
+        $sellingProducts =  static::join('order_product', 'products.id', '=', 'order_product.product_id')
+                                ->join('orders', 'orders.id', '=', 'order_product.order_id')
+                                ->select(DB::raw('products.id ,SUM(order_product.quantity) as sold'))
+                                ->where('orders.state', '=', 1)
+                                ->groupBy('products.id')
+                                ->orderBy('sold', 'desc')->limit($limit)->get();
+        $sellingProducts = $sellingProducts->map(function ($product, $i){
+            // dd($product);
+            return [
+                    'product' => static::find($product->id),
+                    'sold' => $product->sold
+            ];
+        });
+        return $sellingProducts;
+    }
+
+    
+
+
 }

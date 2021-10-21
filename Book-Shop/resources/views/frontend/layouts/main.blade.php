@@ -85,6 +85,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         }
         // ]]>
     </script>
+    <script>
+        function formatNumber(num) {
+            return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
+        }
+    </script>
     <!--initiate accordion-->
     <script type="text/javascript">
         $(function () {
@@ -123,7 +128,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                                     <label for="">Số lượng: </label>
                                                     <input type="number" name="quantity" data-id="${item.id}" value="${item.quantity}" class="cart-top-quantity">
                                                 </div>
-                                                <span class="price">${item.price * item.quantity} VNĐ</span>
+                                                <span class="price">${formatNumber(item.price * item.quantity)} VNĐ</span>
                                             </div>
                                             <div class="remove" data-id="${item.id}">x</div>
                                         </li>`
@@ -136,8 +141,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                         <td>
                                             <input type="number" name="quantity" data-id="${item.id}" class="cart-quantity" value="${item.quantity}" min="1">
                                         </td>
-                                        <td>${item.price} VNĐ</td>
-                                        <td>${item.price * item.quantity} VNĐ</td>
+                                        <td>${formatNumber(item.price)} VNĐ</td>
+                                        <td>${formatNumber(item.price * item.quantity)} VNĐ</td>
                                     </tr>`
                         })
                     } else {
@@ -151,7 +156,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     $('#cart-quantity').html($('#cart-list-item').children('li').length)
                     $('#cart-quantity').show();
                     $('#cart-data').html(html1);
-                    $('#total-price').html(res.data.totalPrice)
+                    $('#total-price').html(formatNumber(res.data.totalPrice))
                 })
                 .catch(function(res){
                     console.log(res)
@@ -203,7 +208,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 history.forEach(function(item){
                     html += `<li class="search-list-item">
                                 <i class="fas fa-history"></i>
-                                <a href="search?search=${item}">${item}</a>
+                                <a href="/search?search=${item}">${item}</a>
                             </li>`
                 })
                 $('.search-list').html(html)

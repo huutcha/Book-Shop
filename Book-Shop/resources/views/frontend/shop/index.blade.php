@@ -31,9 +31,15 @@ Tông hợp sản phẩm
                     <div class="grid-chain-bottom">
                         <h6><a href="{{url('products/'.$product->id)}}">{{$product->information->name}}</a></h6>
                         <div class="star-price">
-                            <div class="dolor-grid">
-                                <span class="actual">{{$product->price}} VNĐ</span>
-                                {{-- <span class="reducedfrom">400$</span> --}}
+                            <div class="dolor-grid" style="flex: 1">
+                                @if ($product->price_sale)
+                                    <div>
+                                        <span class="actual" >{{$product->priceSaleFormat}} đ</span>
+                                        <span class="reducedfrom">{{$product->priceFormat}}đ</span>
+                                    </div>
+                                @else
+                                    <span class="actual" >{{$product->priceFormat}} đ</span>
+                                @endif
                                 <ul class="rating">
                                     <li><i class="{{$product->rate >= 1 ? 'fas fa-star' : 'far fa-star'}}"></i></li>
                                     <li><i class="{{$product->rate >= 2 ? 'fas fa-star' : 'far fa-star'}}"></i></li>

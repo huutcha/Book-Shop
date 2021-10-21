@@ -24,14 +24,7 @@ class DashboardController extends Controller
         $salesByDay = Order::salesBy('day');
         $salesNew = Order::salesBy('new');
         
-        $sellingProducts = Product::getSellingProducts();
-        $sellingProducts = $sellingProducts->map(function ($product, $i){
-            // dd($product);
-            return [
-                    'product' => Product::find($product->id),
-                    'sold' => $product->sold
-            ];
-        });
+        $sellingProducts = Product::getSellingProducts(5);
         // dd($sellingProducts);
         return view('backend.index', [
             'productByMonth' => $productByMonth,
