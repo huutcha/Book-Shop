@@ -38,7 +38,7 @@ Route::group(['prefix' => 'admin'],function (){
         Route::post('/avatar/{id}', [UserInformationController::class, 'updateAvatar']);
 
 
-        // Route::resource('users', UserController::class);
+        Route::resource('users', UserController::class);
         Route::get('/users/{id}/information', [UserInformationController::class, 'createProfile']);
         Route::put('/users/{id}/information', [UserInformationController::class, 'storeProfile']);
 

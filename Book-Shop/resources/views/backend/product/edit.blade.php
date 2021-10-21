@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-@extends('backend.layouts.table')
-
-=======
 @extends('backend.layouts.main')
 @section('title')
 Admin | Chỉnh sửa sản phẩm
@@ -13,7 +9,6 @@ Chỉnh sửa sản phẩm
 <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/select2/dist/css/select2.min.css')}}" />
 <link rel="stylesheet" type="text/css" href="{{asset('assets/libs/quill/dist/quill.snow.css')}}" />
 @endpush
->>>>>>> huudinh
 @section('content')
 <form action="{{url('admin/products/'.$product->id)}}" method="post" enctype="multipart/form-data">
     @csrf
@@ -120,26 +115,6 @@ Chỉnh sửa sản phẩm
                     @enderror
                 </div>
             </div>
-<<<<<<< HEAD
-            <div class="form-group row">
-                    <label>Promotion ID:</label>
-                    <div class="col-md-12">
-                      <select
-                        class="select2 form-select shadow-none mt-3"
-                        {{-- multiple="multiple" --}}
-                        style="height: 36px; width: 100%"
-                        name="promotion_id"
-                      >
-                      
-                      @foreach ($promotions as $promotion)
-                        <option value={{$promotion->id}}>{{$promotion->name}} - {{$promotion->description}}</option>
-                      @endforeach                       
-                      </select>
-                    </div>
-                  </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-=======
         </div>
         <div class="card">
             <div class="card-body">
@@ -157,7 +132,6 @@ Chỉnh sửa sản phẩm
                 </div>
             </div>
         </div>
->>>>>>> huudinh
     </div>
 </div>
 <button type="submit" class="btn btn-primary">Lưu thay đổi</button>

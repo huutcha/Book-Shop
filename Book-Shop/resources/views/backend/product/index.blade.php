@@ -13,10 +13,10 @@ Danh sách sản phẩm
     <thead>
         <tr>
             <th>Mã sản phẩm</th>
-            <th>Tên sản phẩm</th>
+            <th style="max-width: 450px">Tên sản phẩm</th>
             <th>Số lượng hàng</th>
             <th>Giá</th>
-            <th>Chương trình khuyến mãi</th>
+            {{-- <th>Chương trình khuyến mãi</th> --}}
             <th></th>
         </tr>
     </thead>
@@ -24,7 +24,7 @@ Danh sách sản phẩm
         @foreach ($products as $product)
             <tr>
                 <td>{{$product->product_code}}</td>
-                <td class="nowrap d-flex"> 
+                <td class="d-flex"> 
                     <img src="{{asset('storage/products/'.$product->image[0]->path)}}" style="width: 60px; margin-right: 6px;" alt="">
                     {{$product->information->name}}
                 </td>
@@ -37,7 +37,6 @@ Danh sách sản phẩm
                 @else
                     <td>{{$product->price}}</td>
                 @endif
-                <td>{{$product->promotion ? $product->promotion->name : ''}}</td>
                 <td>
                     <a class="btn btn-primary" href="{{ url('admin/products/'.$product->id.'/edit')}}">Edit</a>
                     <form method="POST" action="{{url('admin/products/'.$product->id)}}" class="d-inline" onsubmit="return confirm('Are you sure?')">
