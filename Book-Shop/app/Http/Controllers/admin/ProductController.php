@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\ImageProduct;
+use App\Http\Controllers\Controller;
 use App\Models\ProductInformation;
 use App\Models\Promotion;
 use App\Models\Category;

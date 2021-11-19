@@ -25,6 +25,12 @@ class ProductController extends Controller
             if ($request->query('sort') == 'new'){
                 $products = SubCategory::find($subcategory_id)->product->sortByDesc('created_at');
             }
+            if ($request->query('sort') == 'price-asc'){
+                $products = SubCategory::find($subcategory_id)->product->sortBy('price_sale');
+            }
+            if ($request->query('sort') == 'price-desc'){
+                $products = SubCategory::find($subcategory_id)->product->sortByDesc('price_sale');
+            }
         }
         return view('frontend.shop.index', [
             'categories' => $categories,

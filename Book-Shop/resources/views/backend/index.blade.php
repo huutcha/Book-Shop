@@ -88,7 +88,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Sản phẩm bán chạy</h4>
-                    <h6 class="card-subtitle">Top 5 sản phẩm bán chạy trong tháng</h6>
+                    <h6 class="card-subtitle">Top 5 sản phẩm bán chạy</h6>
                     <table class="table">
                         <tr>
                             <th>#</th>

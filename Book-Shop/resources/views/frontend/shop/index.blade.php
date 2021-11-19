@@ -9,12 +9,15 @@ Tông hợp sản phẩm
 <div class="shoes-grid">
     <div class=" w_content">
         <div class="women">
-            <ul class="w_nav">
+            <ul class="w_nav d-flex">
                 <li>Sort : </li>
-                 <li><a href="?sort=popular" style="{{Request::get('sort') == 'popular' ? 'color: rgb(29, 186, 165)' : ''}}">Phổ biến</a></li> |
-                 <li><a href="?sort=new" style="{{Request::get('sort') == 'new' ? 'color: rgb(29, 186, 165)' : ''}}">Mới </a></li> |
-                 <li><a href="?sort=discount" style="{{Request::get('sort') == 'discount' ? 'color: rgb(29, 186, 165)' : ''}}">discount</a></li> |
-                 <li><a href="?sort=price" style="{{Request::get('sort') == 'price' ? 'color: rgb(29, 186, 165)' : ''}}">Giá: Low High </a></li> 
+                 {{-- <li><a href="?sort=popular" style="{{Request::get('sort') == 'popular' ? 'color: rgb(29, 186, 165)' : ''}}">Phổ biến</a></li> | --}}
+                <li><a href="?sort=new" style="{{Request::get('sort') == 'new' ? 'color: rgb(29, 186, 165)' : ''}}">Mới </a></li> |
+                 {{-- <li><a href="?sort=discount" style="{{Request::get('sort') == 'discount' ? 'color: rgb(29, 186, 165)' : ''}}">discount</a></li> | --}}
+                <li class="d-flex">Giá: 
+                     <a href="?sort=price-asc" style="{{Request::get('sort') == 'price-asc' ? 'color: rgb(29, 186, 165)' : ''}}"> Tăng dần,  </a>
+                     <a href="?sort=price-desc" style="{{Request::get('sort') == 'price-desc' ? 'color: rgb(29, 186, 165)' : ''}}"> Giảm dần </a>
+                </li> 
              <div class="clearfix"> </div>	
              </ul>
              <div class="clearfix"> </div>	

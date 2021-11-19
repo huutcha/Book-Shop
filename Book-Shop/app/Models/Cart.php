@@ -19,7 +19,7 @@ class Cart
     {
         $newProduct = [
             'quantity' => $quantity,
-            'price' => $product->price,
+            'price' => $product->price_sale ? $product->price_sale : $product->price,
             'name' => $product->information->name,
             'img' => $product->image[0]->path,
             'id' => $product->id

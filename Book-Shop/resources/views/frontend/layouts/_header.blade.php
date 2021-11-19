@@ -14,9 +14,12 @@
                 <div class="clearfix"> </div>
             </div>
             <div class="top-header-right">
+                @auth
                 <div class="down-top top-down">
-                      <a href="{{url('/logout')}}" class="logout" ><i class="fas fa-sign-out-alt"></i> ĐĂNG XUẤT</a>
-                 </div>
+                    <a href="{{url('/logout')}}" class="logout" ><i class="fas fa-sign-out-alt"></i> ĐĂNG XUẤT</a>
+               </div>
+                @endauth
+                
                 <div class="clearfix"> </div>
             </div>
             <div class="clearfix"> </div>
