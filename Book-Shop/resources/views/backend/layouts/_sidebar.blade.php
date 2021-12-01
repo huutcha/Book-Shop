@@ -23,7 +23,7 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('admin/orders')}}" aria-expanded="false"><i class="mdi mdi-receipt"></i><span class="hide-menu">Quản lý đơn hàng</span></a>
                 </li>
-                <li class="sidebar-item">
+                <li class="sidebar-item d-none">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{url('admin/promotions')}}" aria-expanded="false"><i class="mdi mdi-sale"></i><span class="hide-menu">Quản lý khuyến mãi</span></a>
                 </li>
             </ul>

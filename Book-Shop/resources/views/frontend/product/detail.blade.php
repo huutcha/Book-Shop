@@ -333,6 +333,7 @@
             })
             .then(function (response) {
                 loadCart();
+                swal("Thành công!", "Thêm sản phẩm vào giỏ hàng thành công!", "success")
             })
             .catch(function (error) {
                 console.log(error);

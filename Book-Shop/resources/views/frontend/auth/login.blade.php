@@ -28,7 +28,7 @@
                         <div class="text-danger">{{$message}}</div>
                     @enderror
                 </div>
-                <a class="forgot" href="#">Quên mậy khẩu?</a> <br> <br>
+                {{-- <a class="forgot" href="#">Quên mậy khẩu?</a> <br> <br> --}}
                 <input type="submit" value="ĐĂNG NHẬP" />
             </form>
         </div>

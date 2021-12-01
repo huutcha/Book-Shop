@@ -11,9 +11,9 @@ class ProductController extends Controller
 {
     public function home(){
         $categories = Category::all();
-        $date = time() - 259200;
-        $lastestProducts = Product::whereRaw('created_at >= ?', [date( 'Y-m-d',$date)])->orderBy('created_at', 'desc')->limit(6)->get();
-        return view('frontend.index', compact('categories'), compact('lastestProducts'));
+        $lastestProducts = Product::latest()->limit(8)->get();
+        $sellingProducts = Product::getSellingProducts(8);
+        return view('frontend.index', compact('categories','lastestProducts', 'sellingProducts'));
     }
 
     public function shop($category_id, $subcategory_id, Request $request){
@@ -24,6 +24,12 @@ class ProductController extends Controller
         if ($request->query('sort')){
             if ($request->query('sort') == 'new'){
                 $products = SubCategory::find($subcategory_id)->product->sortByDesc('created_at');
+            }
+            if ($request->query('sort') == 'price-asc'){
+                $products = SubCategory::find($subcategory_id)->product->sortBy('price_sale');
+            }
+            if ($request->query('sort') == 'price-desc'){
+                $products = SubCategory::find($subcategory_id)->product->sortByDesc('price_sale');
             }
         }
         return view('frontend.shop.index', [

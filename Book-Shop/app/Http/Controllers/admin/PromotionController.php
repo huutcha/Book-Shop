@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Models\Promotion;
+use App\Http\Controllers\Controller;
 class PromotionController extends Controller
 {
     public function index()

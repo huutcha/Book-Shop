@@ -14,17 +14,12 @@
                 <div class="clearfix"> </div>
             </div>
             <div class="top-header-right">
-                <div class="down-top">
-                      <select class="in-drop">
-                          <option value="English" class="in-of">English</option>
-                          <option value="Japanese" class="in-of">Japanese</option>
-                          <option value="French" class="in-of">French</option>
-                          <option value="German" class="in-of">German</option>
-                        </select>
-                 </div>
+                @auth
                 <div class="down-top top-down">
-                      <a href="{{url('/logout')}}" >ĐĂNG XUẤT</a>
-                 </div>
+                    <a href="{{url('/logout')}}" class="logout" ><i class="fas fa-sign-out-alt"></i> ĐĂNG XUẤT</a>
+               </div>
+                @endauth
+                
                 <div class="clearfix"> </div>
             </div>
             <div class="clearfix"> </div>
@@ -34,7 +29,7 @@
         <div class="container">
             <div class="d-flex justify-content-beetween">
                 <div class="logo">
-                    <a href="{{url('/')}}"><img src="images/logo.png" alt=" " /></a>
+                    <a href="{{url('/')}}" class="" ><img src="{{asset('frontend/images/logo.png')}}" alt=" " height="50px" /></a>
                 </div>
                 <div class="search">
                     <form action="{{url('/search')}}">

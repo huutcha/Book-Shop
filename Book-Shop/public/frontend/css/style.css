@@ -213,7 +213,7 @@ ul.login li{
 	display:inline-block;
 }
 ul.login li a span{
-	background: url(../images/img-sprite.png) -143px -29px;
+	
 	width: 26px;
 	height: 26px;
 	display: inline-block;
@@ -557,6 +557,13 @@ a.view-all{
 a.all-product{
 	float:left;
 }
+.logout{
+	color: white;
+	text-decoration: none;
+}
+.logout:hover{
+	color: white;
+}
 h5.latest-product{
 	margin: 6px 0 0;
 	font-size: 1.3em;
@@ -639,7 +646,7 @@ span.reducedfrom {
 	color: #555;
 	text-decoration: line-through;
 	margin-right: 8%;
-	font-size:1.1em;
+	font-size:1em;
 }
 span.actual {
 	font-weight: 500;

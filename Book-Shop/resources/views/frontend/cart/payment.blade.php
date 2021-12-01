@@ -67,14 +67,14 @@
                                 <p class="product-name ms-2">{{$product['name']}}</p>
                             </td>
                             <td>{{$product['quantity']}}</td>
-                            <td>{{$product['price']}} VNĐ</td>
-                            <td>{{$product['price'] * $product['quantity']}} VNĐ</td>
+                            <td>{{number_format($product['price'], 0, ",", ".")}} đ</td>
+                            <td>{{number_format($product['price'] * $product['quantity'], 0, ",", ".")}} đ</td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
             <hr>
-            <p style="text-align: right">Tổng tiền: {{$totalPrice}} VNĐ</p> 
+            <p style="text-align: right">Tổng tiền: {{number_format($totalPrice, 0, ",", ".")}} đ</p> 
         </div>
     </div>
 </div>

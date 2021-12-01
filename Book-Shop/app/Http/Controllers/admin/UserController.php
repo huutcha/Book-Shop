@@ -7,6 +7,7 @@ use App\Models\UsersInformation;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {

@@ -8,7 +8,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>@yield('title')</title>
         <!-- Favicon icon -->
-        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon.png')}}" />
+        <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon.png')}}" />
         <!-- Custom CSS -->
         @stack('link-css')
         <link href="{{ asset('dist/css/style.min.css')}}" rel="stylesheet" />
@@ -124,6 +124,11 @@
                 console.error("Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.");
             }
             // ]]>
+        </script>
+        <script>
+            function formatNumber(num) {
+                return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')
+            }
         </script>
         @stack('js')
     </body>

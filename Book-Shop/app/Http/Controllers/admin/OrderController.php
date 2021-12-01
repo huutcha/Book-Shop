@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
 class OrderController extends Controller
 {
     public function index(){
